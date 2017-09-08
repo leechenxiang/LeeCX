@@ -23,10 +23,10 @@ generatorSqlmapCustom：mybatis逆向生成工具<br />
 leecx-root：母工程，主要用于管理pom<br />
 leecx-common：统一工具类，包含统一的utils以及枚举等<br />
 leecx-mng：后台管理系统<br />
-  |--leecx-mng-pojo：entity，包含pojo，bo以及vo<br />
-  |--leecx-mng-mapper：mybitas的mapper.xml以及mapper.java文件<br />
-  |--leecx-mng-service：service工程<br />
-  |--leecx-mng-web：web工程<br />
+    |--leecx-mng-pojo：entity，包含pojo，bo以及vo<br />
+    |--leecx-mng-mapper：mybitas的mapper.xml以及mapper.java文件<br />
+    |--leecx-mng-service：service工程<br />
+    |--leecx-mng-web：web工程<br />
 
 
 扫一扫关注我们 加入QQ群(458372464)或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
