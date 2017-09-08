@@ -7,6 +7,7 @@ LeeCX 开源后台管理系统，前端基于bootstrap+jquery，扁平化风格�
 3、展现层： 使用spring mvc注解，api接口采用Restful风格<br />
 4、持久层：使用mybatis持久化，提供逆向生成工程减少代码量；并且使用pagehelper作为分页插件<br />
 5、日志采用slf4j+log4j进行日志管理<br />
+6、使用SID（基于idworker）生成唯一主键，利于分库分表<br />
 其他技术将会不间断更新并且引入...<br />
 
 ### 技术选型：<br />
