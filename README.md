@@ -28,9 +28,7 @@ LeeCX
      ├── leecx-mng-pojo：entity，包含pojo，bo以及vo
      ├── leecx-mng-mapper：mybitas的mapper.xml以及mapper.java文件
      ├── leecx-mng-service：service工程
-     ├── leecx-mng-web：web工程
-     ├── zheng-upms-rpc-service -- rpc服务提供者
-     └── zheng-upms-server -- 用户权限系统及SSO服务端[端口:1111]
+     └── leecx-mng-web：web工程 (port:8080 可在pom中自由配置)
 ```
 
 扫一扫关注我们 加入QQ群(458372464)或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
