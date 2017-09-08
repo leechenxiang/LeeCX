@@ -18,6 +18,17 @@ LeeCX 开源后台管理系统，前端基于bootstrap+jquery，扁平化风格�
 6、日志管理：SLF4J + Log4j<br />
 7、前端框架：Bootstrap + Jquery<br />
 
+工程结构：<br />
+generatorSqlmapCustom：mybatis逆向生成工具<br />
+leecx-root：母工程，主要用于管理pom<br />
+leecx-common：统一工具类，包含统一的utils以及枚举等<br />
+leecx-mng：后台管理系统<br />
+  |--leecx-mng-pojo：entity，包含pojo，bo以及vo
+  |--leecx-mng-mapper：mybitas的mapper.xml以及mapper.java文件
+  |--leecx-mng-service：service工程
+  |--leecx-mng-web：web工程
+
+
 扫一扫关注我们 加入QQ群(458372464)或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
 ![image](https://github.com/leechenxiang/LeeCX/raw/master/leecx-mng/leecx-mng-web/src/main/webapp/static/pages/img/center/qrcode-scan.png)
 
