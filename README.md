@@ -32,6 +32,8 @@ LeeCX
      └── leecx-mng-web：web工程 (port:8080 可在pom中自由配置)
 ```
 
+* 注意：sql脚本文件在 leecx-mng-web/src/main/resources/sql/leecx.sql <br />
+
 扫一扫关注我们 加入QQ群（458372464）或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
 ![image](https://github.com/leechenxiang/LeeCX/raw/master/leecx-mng/leecx-mng-web/src/main/webapp/static/pages/img/center/qrcode-scan.png)
 
