@@ -79,14 +79,14 @@
         </dependency>
         
         <!-- alipay -->
-        <dependency>
-			<groupId>com.alipay</groupId>
-			<artifactId>alipay-sdk-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alipay</groupId>
-			<artifactId>alipay-sdk-java-source</artifactId>
-		</dependency>
+<!--         <dependency> -->
+<!-- 			<groupId>com.alipay</groupId> -->
+<!-- 			<artifactId>alipay-sdk-java</artifactId> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.alipay</groupId> -->
+<!-- 			<artifactId>alipay-sdk-java-source</artifactId> -->
+<!-- 		</dependency> -->
 		
 	</dependencies>
 	
