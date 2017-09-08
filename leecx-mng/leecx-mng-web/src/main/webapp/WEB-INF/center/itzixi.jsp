@@ -73,7 +73,7 @@
 	                <div class="caption">
 	                    <i class="icon-microphone font-dark hide"></i>
 	                    <span class="caption-subject bold font-dark uppercase"> 扫一扫关注我们</span>
-	                    <span class="caption-helper">加入QQ群或者关注公众号获得更多技术咨询、技术交流、技术资源...</span>
+	                    <span class="caption-helper">加入QQ群（458372464）或者关注公众号获得更多技术咨询、技术交流、技术资源...</span>
 	                </div>
 	            </div>
 	            <div class="portlet-body">
