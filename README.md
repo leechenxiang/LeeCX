@@ -10,6 +10,9 @@ LeeCX 开源后台管理系统，前端基于bootstrap+jquery，扁平化风格�
 6、使用SID（基于idworker）生成唯一主键，利于分库分表<br />
 其他技术将会不间断更新并且引入...<br />
 
+### 开发环境：<br />
+sts-eclipse, jdk8, tomcat7或8<br />
+
 ### 技术选型：<br />
 1、核心框架：Spring Framework 4.3.3.RELEASE<br />
 2、权限框架：Apache Shiro 1.3.2<br />
