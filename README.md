@@ -18,7 +18,7 @@ LeeCX 开源后台管理系统，前端基于bootstrap+jquery，扁平化风格�
 6、日志管理：SLF4J + Log4j<br />
 7、前端框架：Bootstrap + Jquery<br />
 
-扫一扫关注我们 加入QQ群或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
+扫一扫关注我们 加入QQ群(458372464)或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
 ![image](https://github.com/leechenxiang/LeeCX/raw/master/leecx-mng/leecx-mng-web/src/main/webapp/static/pages/img/center/qrcode-scan.png)
 
 
