@@ -12,7 +12,7 @@
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection 
 			driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/alipay" 
+			connectionURL="jdbc:mysql://localhost:3306/leecx" 
 			userId="root"
 			password="root">
 		</jdbcConnection>
@@ -47,7 +47,7 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table schema="" tableName="user"></table>
+		<table schema="" tableName="demo_item"></table>
 
 	</context>
 </generatorConfiguration>

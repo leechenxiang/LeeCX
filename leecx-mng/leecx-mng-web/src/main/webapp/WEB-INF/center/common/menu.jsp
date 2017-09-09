@@ -29,7 +29,7 @@
 					</a>
                	</li>
                	
-              		<!-- 用户个人信息 start -->
+              	<!-- 用户个人信息 start -->
 				<li class="nav-item ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="icon-user"></i>
@@ -45,6 +45,27 @@
                         <li class="nav-item ">
                             <a href="<%=request.getContextPath() %>/user/showUserInfoListPage.action" class="ajaxify nav-link ">
                                 <span class="title">用户列表</span>
+                            </a>
+                        </li>
+                    </ul>
+               	</li>
+               	
+               	<!-- 商品信息 start -->
+				<li class="nav-item ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-basket-loaded"></i>
+                        <span class="title">Demo - 商品信息</span>
+						<span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+						<li class="nav-item ">
+                            <a href="<%=request.getContextPath() %>/demoItem/showCreateItemPage.action" class="ajaxify nav-link ">
+                                <span class="title">创建商品</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="<%=request.getContextPath() %>/demoItem/showQueryItemPage.action" class="ajaxify nav-link ">
+                                <span class="title">商品列表</span>
                             </a>
                         </li>
                     </ul>
