@@ -1,3 +1,12 @@
+var reloadItemGrid = function() {
+	var jqGrid = $("#jqGridDemoItemList");  
+	var hdnContextPath = $("#hdnContextPath").val();
+	jqGrid.jqGrid('setGridParam',{datatype:'json'}).setGridParam({ 
+		page: 1,
+        url: hdnContextPath + "/demoItem/getItemInfoList.action",
+    }).trigger("reloadGrid");
+}
+
 // 商品对象信息
 var DemoItemInfo = function () {
 
@@ -58,16 +67,18 @@ var DemoItemInfo = function () {
                     url: hdnContextPath + '/demoItem/saveOrUpdate.action', // 需要提交的 url
                     data: itemForm.serialize(),
                     success: function(data) {
+                    	debugger;
                         // 登录成功或者失败的提示信息
                         if (data.status == 200 && data.msg == "OK") {
                         	SweetAlert.success("保存成功！");
                         	App.unblockUI();
                         	
                         	// 修改操作需要刷新grid以及关闭窗口
-//                        	if (userId != "" && userId != null && userId != undefined) {
-//                        		reloadUserGrid();
-//                        		$("#ajax-modifyDemoItemInfo-modal").modal('hide');
-//                        	}
+                        	var itemId = $("#itemId").val();
+                        	if (itemId != "" && itemId != null && itemId != undefined) {
+                        		reloadItemGrid();
+                        		$("#ajax-modifyItem-modal").modal('hide');
+                        	}
                         } else {
                         	SweetAlert.error(data.msg);
                         	App.unblockUI();

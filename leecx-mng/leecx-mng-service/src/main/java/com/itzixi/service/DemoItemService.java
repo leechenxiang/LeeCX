@@ -46,4 +46,46 @@ public interface DemoItemService {
 	 * @version V1.0
 	 */
 	public JqGridResult queryItemList(Integer page, Integer pageSize);
+	
+	/**
+	 * 
+	 * @Title: DemoItemService.java
+	 * @Package com.itzixi.service
+	 * @Description: 根据ID查询商品信息
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月10日 下午8:53:46
+	 * @version V1.0
+	 */
+	public DemoItem queryItemById(String itemId);
+	
+	/**
+	 * 
+	 * @Title: DemoItemService.java
+	 * @Package com.itzixi.service
+	 * @Description: 修改商品信息
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月10日 下午9:17:05
+	 * @version V1.0
+	 */
+	public void updateItem(DemoItem item);
+	
+	/**
+	 * 
+	 * @Title: DemoItemService.java
+	 * @Package com.itzixi.service
+	 * @Description: 删除商品
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月10日 下午9:27:43
+	 * @version V1.0
+	 */
+	public void deleteItem(String itemId);
 }

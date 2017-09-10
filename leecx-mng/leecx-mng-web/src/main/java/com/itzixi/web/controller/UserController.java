@@ -146,6 +146,7 @@ public class UserController extends BaseController {
 		
 		ModelAndView mv = new ModelAndView("user/userDetail");
 		mv.addObject("userInfo", userInfo);
+		mv.addObject("num", 12500);
 		
 		return mv;
 	}

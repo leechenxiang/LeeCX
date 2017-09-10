@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.common.utils.LeeJSONResult;
@@ -77,7 +78,9 @@ public class DemoItemController extends BaseController {
 			// 保存商品的操作
 			itemService.saveItem(item);
 		} else {
-//			itemService.updateItemById(item);
+			
+			item.setAmount(item.getAmount() * 100);
+			itemService.updateItem(item);
 		}
 		
 		return LeeJSONResult.ok();
@@ -124,6 +127,77 @@ public class DemoItemController extends BaseController {
 		JqGridResult jqgridResult = itemService.queryItemList(page, pageSize);
 		
 		return jqgridResult;
+	}
+	
+	/**
+	 * 
+	 * @Title: DemoItemController.java
+	 * @Package com.itzixi.web.controller
+	 * @Description: 展示商品详情
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月10日 下午8:54:48
+	 * @version V1.0
+	 */
+	@RequestMapping("/showItemInfoPage")
+	public ModelAndView showItemInfoPage(String itemId, HttpServletRequest request){
+		
+		DemoItem item = itemService.queryItemById(itemId);
+		
+		ModelAndView mv = new ModelAndView("item/demoItemInfo");
+		mv.addObject("item", item);
+		
+		return mv;
+	}
+	
+	/**
+	 * 
+	 * @Title: DemoItemController.java
+	 * @Package com.itzixi.web.controller
+	 * @Description: 展示修改商品的页面
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月10日 下午9:11:31
+	 * @version V1.0
+	 */
+	@RequestMapping("/showModifyItemPage")
+	public ModelAndView showModifyItemPage(String itemId, HttpServletRequest request){
+		
+		DemoItem item = itemService.queryItemById(itemId);
+		
+		ModelAndView mv = new ModelAndView("item/modifyItem");
+		mv.addObject("item", item);
+		
+		return mv;
+	}
+	
+	/**
+	 * 
+	 * @Title: DemoItemController.java
+	 * @Package com.itzixi.web.controller
+	 * @Description: 删除商品
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月10日 下午9:29:41
+	 * @version V1.0
+	 */
+	@RequestMapping("/deleteItem")
+	@ResponseBody
+	public LeeJSONResult deleteItem(String itemId){
+		
+		if (StringUtils.isEmpty(itemId)) {
+			return LeeJSONResult.errorMsg("商品id为空或者不存在...");
+		}
+		
+		itemService.deleteItem(itemId);
+		
+		return LeeJSONResult.ok();
 	}
 
 }

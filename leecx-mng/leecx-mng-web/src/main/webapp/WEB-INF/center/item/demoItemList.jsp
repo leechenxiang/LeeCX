@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script src="<%=request.getContextPath() %>/static/pages/js/demoItemList.js?v=1.10.1" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/static/pages/js/demoItemList.js?v=1.10.2" type="text/javascript"></script>
 
 	<!-- BEGIN PAGE HEADER-->
 	<!-- BEGIN PAGE BAR -->
@@ -36,4 +36,8 @@
 	</div>
 	<!-- 用户信息列表 jqgrid end -->
 
-	
+	<!-- ajax 动态 读取model -->	
+	<!-- 查看商品信息详情的model -->
+	<div id="ajax-detailItemInfo-modal" class="modal container fade" tabindex="-1"></div>
+	<!-- 展现修改商品信息的model -->
+	<div id="ajax-modifyItem-modal" class="modal container fade" tabindex="-1"></div>

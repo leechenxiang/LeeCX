@@ -12,8 +12,6 @@ import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.mapper.DemoItemMapper;
 import com.itzixi.pojo.DemoItem;
 import com.itzixi.pojo.DemoItemExample;
-import com.itzixi.pojo.SysUser;
-import com.itzixi.pojo.DemoItemExample.Criteria;
 import com.itzixi.service.DemoItemService;
 
 @Service
@@ -56,5 +54,25 @@ public class DemoItemServiceImpl implements DemoItemService {
 		
 		return grid;
 	}
+
+	@Override
+	public DemoItem queryItemById(String itemId) {
+		
+		DemoItem item = demoItemMapper.selectByPrimaryKey(itemId);
+		
+		return item;
+	}
+
+	@Override
+	public void updateItem(DemoItem item) {
+		
+		demoItemMapper.updateByPrimaryKeySelective(item);
+	}
+
+	@Override
+	public void deleteItem(String itemId) {
+		demoItemMapper.deleteByPrimaryKey(itemId);
+	}
+	
 
 }
