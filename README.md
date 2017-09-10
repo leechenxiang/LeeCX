@@ -45,5 +45,6 @@ LeeCX
 [《使用新版支付宝接口实现第三方网关支付》](http://www.itzixi.com/course/detail.shtml?courseId=170818C4XS6SPG9P)<br />
 [《SpringMVC 实现web端微信扫码支付(即时到账)》](http://www.itzixi.com/course/detail.shtml?courseId=1709029W0AFN7X1P)<br />
 [《Linux - Java开发者所需要掌握的一门最基本的技能》](http://www.itzixi.com/course/detail.shtml?courseId=170802GTMYF0GYNC)<br />
+[《插件推荐：mybatis-pagehelper + jqgrid 实现无刷新分页》](http://www.itzixi.com/course/detail.shtml?courseId=1709106XFPFRT4SW)<br />
 录制中... 《shiro - 从入门到精通，结合实战》<br />
 录制中... 《springboot - 从入门到精通，结合各类技术的整合与实战》<br />
