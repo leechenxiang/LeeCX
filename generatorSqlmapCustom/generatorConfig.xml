@@ -47,7 +47,7 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table schema="" tableName="demo_item"></table>
+		<table schema="" tableName="data_dict"></table>
 
 	</context>
 </generatorConfiguration>
