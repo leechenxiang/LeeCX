@@ -135,6 +135,22 @@
 	                </div>
 	                <div class="row" style="margin-top: 10px;">
 	                    <div class="col-md-4">
+	                        	<img src="<%=request.getContextPath() %>/static/pages/img/course/leecx.jpg" width="233px" class="img-responsive"/>
+	                    </div>
+	                    <div class="col-md-8">
+	                    	<a href="http://www.itzixi.com/course/detail.shtml?courseId=17091175XBRXMS14" target="_blank">《LeeCX 开源后台管理系统 git+maven+ssm (不断更新)》</a>
+	                    </div>
+	                </div>
+	                <div class="row" style="margin-top: 10px;">
+	                    <div class="col-md-4">
+	                        	<img src="<%=request.getContextPath() %>/static/pages/img/course/jqgrid.jpg" width="233px" class="img-responsive"/>
+	                    </div>
+	                    <div class="col-md-8">
+	                    	<a href="http://www.itzixi.com/course/detail.shtml?courseId=1709106XFPFRT4SW" target="_blank">《mybatis-pagehelper+jqgrid 实现无刷新分页》</a>
+	                    </div>
+	                </div>
+	                <div class="row" style="margin-top: 10px;">
+	                    <div class="col-md-4">
 	                        	录制中...
 	                    </div>
 	                    <div class="col-md-8">
