@@ -49,7 +49,7 @@ public class DemoItemServiceImpl implements DemoItemService {
 		JqGridResult grid = new JqGridResult();
 		grid.setTotal(pageList.getPages());
 		grid.setRows(result);
-		grid.setPage(page);
+		grid.setPage(pageList.getPageNum());
 		grid.setRecords(pageList.getTotal());
 		
 		return grid;

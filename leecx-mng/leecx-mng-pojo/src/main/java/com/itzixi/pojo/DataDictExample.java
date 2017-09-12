@@ -443,6 +443,66 @@ public class DataDictExample {
             addCriterion("ddvalue not between", value1, value2, "ddvalue");
             return (Criteria) this;
         }
+
+        public Criteria andIsShowIsNull() {
+            addCriterion("is_show is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowIsNotNull() {
+            addCriterion("is_show is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowEqualTo(Integer value) {
+            addCriterion("is_show =", value, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowNotEqualTo(Integer value) {
+            addCriterion("is_show <>", value, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowGreaterThan(Integer value) {
+            addCriterion("is_show >", value, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_show >=", value, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowLessThan(Integer value) {
+            addCriterion("is_show <", value, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowLessThanOrEqualTo(Integer value) {
+            addCriterion("is_show <=", value, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowIn(List<Integer> values) {
+            addCriterion("is_show in", values, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowNotIn(List<Integer> values) {
+            addCriterion("is_show not in", values, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowBetween(Integer value1, Integer value2) {
+            addCriterion("is_show between", value1, value2, "isShow");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsShowNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_show not between", value1, value2, "isShow");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

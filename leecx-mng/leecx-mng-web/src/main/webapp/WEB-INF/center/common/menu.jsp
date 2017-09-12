@@ -50,6 +50,27 @@
                     </ul>
                	</li>
                	
+               	<!-- 数据字典管理 start -->
+				<li class="nav-item ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-notebook"></i>
+                        <span class="title">数据字典管理</span>
+						<span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+						<li class="nav-item ">
+                            <a href="<%=request.getContextPath() %>/dataDict/showCreateDataDictPage.action" class="ajaxify nav-link ">
+                                <span class="title">新建字典</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="<%=request.getContextPath() %>/dataDict/showDataDictListPage.action" class="ajaxify nav-link ">
+                                <span class="title">字典列表</span>
+                            </a>
+                        </li>
+                    </ul>
+               	</li>
+               	
                	<!-- 商品信息 start -->
 				<li class="nav-item ">
                     <a href="javascript:;" class="nav-link nav-toggle">
