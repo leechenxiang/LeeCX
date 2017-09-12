@@ -10,10 +10,32 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-09-09 21:18:23
+Date: 2017-09-12 20:31:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for data_dict
+-- ----------------------------
+DROP TABLE IF EXISTS `data_dict`;
+CREATE TABLE `data_dict` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(64) NOT NULL COMMENT '数据字典类型名称',
+  `type_code` varchar(64) DEFAULT NULL COMMENT '数据字典类型代码',
+  `ddkey` varchar(6) NOT NULL COMMENT '数据键',
+  `ddvalue` varchar(12) NOT NULL COMMENT '数据值',
+  `is_show` int(1) NOT NULL COMMENT '是否显示，1：显示；2：不显示',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='数据字典表';
+
+-- ----------------------------
+-- Records of data_dict
+-- ----------------------------
+INSERT INTO `data_dict` VALUES ('1', '性别', 'sex', '0', '女', '1');
+INSERT INTO `data_dict` VALUES ('2', '性别', 'sex', '1', '男', '0');
+INSERT INTO `data_dict` VALUES ('3', '性别', 'sex', '2', '不男', '0');
+INSERT INTO `data_dict` VALUES ('5', '汽车类型', 'carType', '1', '轿车', '1');
 
 -- ----------------------------
 -- Table structure for demo_item
@@ -29,9 +51,7 @@ CREATE TABLE `demo_item` (
 -- ----------------------------
 -- Records of demo_item
 -- ----------------------------
-INSERT INTO `demo_item` VALUES ('170908GT9PADTT2W', '大黄靴', '10000');
-INSERT INTO `demo_item` VALUES ('170908GTHM50FBHH', '其乐靴', '8800');
-INSERT INTO `demo_item` VALUES ('170909FRA2NB7TR4', '红翼 red wing', '200000');
+INSERT INTO `demo_item` VALUES ('170909FRA2NB7TR4', '红翼 red wing', '215000');
 INSERT INTO `demo_item` VALUES ('170909FRB9DPXY5P', '红翼 9111', '210000');
 INSERT INTO `demo_item` VALUES ('170909FRCAT15XGC', '红翼 875', '215000');
 INSERT INTO `demo_item` VALUES ('170909FRF2P18ARP', 'cat', '185000');
@@ -39,9 +59,7 @@ INSERT INTO `demo_item` VALUES ('170909FRG6R75PZC', 'dog', '195000');
 INSERT INTO `demo_item` VALUES ('170909FRHBS3K680', '马丁靴', '150000');
 INSERT INTO `demo_item` VALUES ('170909FRPWA5HCPH', '天木兰 经典 船鞋', '65000');
 INSERT INTO `demo_item` VALUES ('170909FRS6SBHH00', '天木兰 踢不烂', '65000');
-INSERT INTO `demo_item` VALUES ('170909FRW1PD5CDP', '其乐沙漠靴', '70000');
 INSERT INTO `demo_item` VALUES ('170909FRX22HKCDP', '其乐 袋鼠靴', '70000');
-INSERT INTO `demo_item` VALUES ('170909FS06DNACX4', '其乐 保暖鞋', '95000');
 
 -- ----------------------------
 -- Table structure for sys_user
