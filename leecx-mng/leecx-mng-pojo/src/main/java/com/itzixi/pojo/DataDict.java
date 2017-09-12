@@ -11,6 +11,8 @@ public class DataDict {
 
     private String ddvalue;
 
+    private Integer isShow;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class DataDict {
 
     public void setDdvalue(String ddvalue) {
         this.ddvalue = ddvalue == null ? null : ddvalue.trim();
+    }
+
+    public Integer getIsShow() {
+        return isShow;
+    }
+
+    public void setIsShow(Integer isShow) {
+        this.isShow = isShow;
     }
 }

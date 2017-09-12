@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 		JqGridResult grid = new JqGridResult();
 		grid.setTotal(pageList.getPages());
 		grid.setRows(userList);
-		grid.setPage(page);
+		grid.setPage(pageList.getPageNum());
 		grid.setRecords(pageList.getTotal());
 		
 		return grid;
