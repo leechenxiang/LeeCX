@@ -136,6 +136,10 @@
 	        <taglib-uri>/shiro</taglib-uri>  
 	        <taglib-location>/WEB-INF/shiro.tld</taglib-location>  
 	    </taglib>
+	    <taglib>  
+	        <taglib-uri>/dataDict</taglib-uri>  
+	        <taglib-location>/WEB-INF/dataDict.tld</taglib-location>  
+	    </taglib>
   	</jsp-config>   
   	
 </web-app>

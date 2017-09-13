@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.common.utils.LeeJSONResult;
 import com.itzixi.pojo.DataDict;
-import com.itzixi.pojo.SysUser;
 import com.itzixi.service.DataDictService;
 
 /**

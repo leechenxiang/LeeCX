@@ -1,6 +1,7 @@
 package com.itzixi.web.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +18,9 @@ import com.itzixi.common.enums.YesOrNo;
 import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.common.utils.LeeJSONResult;
 import com.itzixi.common.utils.NumberUtil;
+import com.itzixi.pojo.DataDict;
 import com.itzixi.pojo.SysUser;
+import com.itzixi.service.DataDictService;
 import com.itzixi.service.UserService;
 
 /**
@@ -41,6 +44,9 @@ public class UserController extends BaseController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private DataDictService ddService;
+	
 	/**
 	 * 
 	 * @Description: 打开新增用户页面
@@ -52,11 +58,16 @@ public class UserController extends BaseController {
 	 * @date 2017年9月5日 下午3:31:42
 	 */
 	@RequestMapping("/showCreateUserPage")
-	public String showCreateUserPage(String userId, HttpServletRequest request){
+	public ModelAndView showCreateUserPage(String userId, HttpServletRequest request){
 		
 		log.debug("显示用户个人信息页面");
 		
-		return "user/createUser";
+		List<DataDict> ddlist = ddService.queryDataDictListByTypeCode("job");
+		
+		ModelAndView mv = new ModelAndView("user/createUser");
+		mv.addObject("ddlist", ddlist);
+		
+		return mv;
 	}
 	
 	/**

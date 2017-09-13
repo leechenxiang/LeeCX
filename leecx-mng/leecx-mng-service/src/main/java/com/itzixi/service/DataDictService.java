@@ -1,8 +1,9 @@
 package com.itzixi.service;
 
+import java.util.List;
+
 import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.pojo.DataDict;
-import com.itzixi.pojo.SysUser;
 
 /**
  * 
@@ -69,5 +70,28 @@ public interface DataDictService {
 	 * @date 2017年9月5日 上午11:15:03
 	 */
 	public void updateDataDictById(DataDict dataDict);
+	
+	/**
+	 * 
+	 * @Description: 根据类型码和ddkey查询ddvalue
+	 * @param typeCode
+	 * @param ddkey
+	 * @return
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月13日 下午7:56:29
+	 */
+	public String queryDataDictValueByCodeKey(String typeCode, String ddKey);
+	
+	/**
+	 * 
+	 * @Description: 根据字典码获取数据字典的列表
+	 * @param typeCode
+	 * @return
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月13日 下午8:20:34
+	 */
+	public List<DataDict> queryDataDictListByTypeCode(String typeCode);
 	
 }

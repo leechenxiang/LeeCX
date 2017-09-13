@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.itzixi.common.enums.YesOrNo;
 import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.mapper.DataDictMapper;
 import com.itzixi.pojo.DataDict;
@@ -69,4 +70,29 @@ public class DataDictServiceImpl implements DataDictService {
 		return dataDictMapper.selectByPrimaryKey(ddId);
 	}
 	
+	@Override
+	public String queryDataDictValueByCodeKey(String typeCode, String ddKey) {
+		DataDictExample dataDictExample = new DataDictExample();
+		Criteria dataDictCriteria = dataDictExample.createCriteria();
+		dataDictCriteria.andTypeCodeEqualTo(typeCode);
+		dataDictCriteria.andDdkeyEqualTo(ddKey);
+		dataDictCriteria.andIsShowEqualTo(YesOrNo.YES.value);
+		List<DataDict> list = dataDictMapper.selectByExample(dataDictExample);
+		if (list != null && list.size() > 0) {
+			DataDict dd = (DataDict)list.get(0);
+			return dd.getDdvalue();
+		}
+		
+		return "";
+	}
+	
+	@Override
+	public List<DataDict> queryDataDictListByTypeCode(String typeCode) {
+		DataDictExample dataDictExample = new DataDictExample();
+		Criteria dataDictCriteria = dataDictExample.createCriteria();
+		dataDictCriteria.andTypeCodeEqualTo(typeCode);
+		dataDictCriteria.andIsShowEqualTo(YesOrNo.YES.value);
+		List<DataDict> list = dataDictMapper.selectByExample(dataDictExample);
+		return list;
+	}
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.context.ApplicationContextAware;
  * @date 2017年9月5日 上午10:36:44
  * @version V1.0
  */
+@Component
 public class SpringContextUtil implements ApplicationContextAware {
 	private static ApplicationContext applicationContext; 
 
@@ -38,6 +40,11 @@ public class SpringContextUtil implements ApplicationContextAware {
 		} catch (Exception e) {
 			throw new RuntimeException("获取的Bean不存在！");
 		}
+	}
+	
+	public static <T> T getBean(Class<T> requiredType)
+			throws BeansException {
+		return applicationContext.getBean(requiredType);
 	}
 
 	public static <T> T getBean(String name, Class<T> requiredType)

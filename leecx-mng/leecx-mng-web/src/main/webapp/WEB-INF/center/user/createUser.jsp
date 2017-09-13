@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="/shiro" prefix="shiro"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="/dataDict" prefix="dataDict" %>  
 
 <script src="<%=request.getContextPath() %>/static/citys/js/distpicker.data.js?v=3.1415926"></script>
 <script src="<%=request.getContextPath() %>/static/citys/js/distpicker.js?v=3.1415926"></script>
@@ -95,15 +96,15 @@
 									<div class="col-md-4">
 	                                    <div id="input-error">
 	                                        <label>
-	                                            <input type="radio" name="sex" class="icheck" value="0" /> 女
+	                                            <input type="radio" name="sex" class="icheck" value="0" /> <dataDict:dataDictValue typeCode="sex" ddKey="0"/>
 	                                        </label>
 	                                        
 	                                        <label>
-	                                            <input type="radio" name="sex" class="icheck" value="1" /> 男
+	                                            <input type="radio" name="sex" class="icheck" value="1" /> <dataDict:dataDictValue typeCode="sex" ddKey="1"/>
 	                                        </label>
 	                                         
 	                                        <label>
-	                                            <input type="radio" name="sex" class="icheck" value="2" checked="checked"/> 保密
+	                                            <input type="radio" name="sex" class="icheck" value="2" checked="checked"/> <dataDict:dataDictValue typeCode="sex" ddKey="2"/>
 	                                        </label>
 	                                    </div>
 									</div>
@@ -114,7 +115,9 @@
 									<div class="col-md-4">
 	                                    <div id="input-error">
 	                                        <select class="form-control" id="job" name="job">
-				                                <option value="8888">请选择</option>
+				                                <option value="0">请选择</option>
+				                                
+				                                <!-- 
 				                                <option value="1" >Java开发</option>
 												<option value="2" >前端开发</option>
 												<option value="3" >大数据开发</option>
@@ -126,6 +129,10 @@
 												<option value="9" >C/C++</option>
 												<option value="10" >学生</option>
 												<option value="11" >其它</option>
+												 -->
+												<c:forEach items="${ddlist }" var="dd">
+													<option value="${dd.ddkey }" >${dd.ddvalue }</option>
+												</c:forEach>
 				                            </select>
 	                                    </div>
 									</div>
