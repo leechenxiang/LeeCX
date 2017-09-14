@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : .
+Source Server         : localhost
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : leecx
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-09-12 20:31:01
+Date: 2017-09-14 08:39:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,15 +27,28 @@ CREATE TABLE `data_dict` (
   `ddvalue` varchar(12) NOT NULL COMMENT '数据值',
   `is_show` int(1) NOT NULL COMMENT '是否显示，1：显示；2：不显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='数据字典表';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COMMENT='数据字典表';
 
 -- ----------------------------
 -- Records of data_dict
 -- ----------------------------
 INSERT INTO `data_dict` VALUES ('1', '性别', 'sex', '0', '女', '1');
-INSERT INTO `data_dict` VALUES ('2', '性别', 'sex', '1', '男', '0');
-INSERT INTO `data_dict` VALUES ('3', '性别', 'sex', '2', '不男', '0');
+INSERT INTO `data_dict` VALUES ('2', '性别', 'sex', '1', '男', '1');
+INSERT INTO `data_dict` VALUES ('3', '性别', 'sex', '2', '保密', '1');
+INSERT INTO `data_dict` VALUES ('4', '汽车类型', 'carType', '2', '公交车', '1');
 INSERT INTO `data_dict` VALUES ('5', '汽车类型', 'carType', '1', '轿车', '1');
+INSERT INTO `data_dict` VALUES ('6', '职业', 'job', '1', 'Java开发', '1');
+INSERT INTO `data_dict` VALUES ('7', '职业', 'job', '2', '前端开发', '1');
+INSERT INTO `data_dict` VALUES ('8', '职业', 'job', '3', '大数据开发', '1');
+INSERT INTO `data_dict` VALUES ('9', '职业', 'job', '4', 'ios开发', '1');
+INSERT INTO `data_dict` VALUES ('10', '职业', 'job', '5', 'Android开发', '1');
+INSERT INTO `data_dict` VALUES ('11', '职业', 'job', '6', 'Linux系统工程师', '1');
+INSERT INTO `data_dict` VALUES ('12', '职业', 'job', '7', 'PHP开发', '1');
+INSERT INTO `data_dict` VALUES ('13', '职业', 'job', '8', '.net开发', '1');
+INSERT INTO `data_dict` VALUES ('14', '职业', 'job', '9', 'C/C++', '1');
+INSERT INTO `data_dict` VALUES ('15', '职业', 'job', '10', '学生', '1');
+INSERT INTO `data_dict` VALUES ('16', '职业', 'job', '11', '其它', '1');
+INSERT INTO `data_dict` VALUES ('17', '职业', 'job', '12', '全栈牛逼架构师', '0');
 
 -- ----------------------------
 -- Table structure for demo_item
