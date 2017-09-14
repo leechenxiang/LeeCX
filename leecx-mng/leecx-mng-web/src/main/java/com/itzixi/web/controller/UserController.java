@@ -178,8 +178,11 @@ public class UserController extends BaseController {
 		// 查询用户个人信息
 		SysUser userInfo = userService.queryUserInfoById(userId);
 		
+		List<DataDict> ddlist = ddService.queryDataDictListByTypeCode("job");
+		
 		ModelAndView mv = new ModelAndView("user/modifyUser");
 		mv.addObject("userInfo", userInfo);
+		mv.addObject("ddlist", ddlist);
 		
 		return mv;
 	}

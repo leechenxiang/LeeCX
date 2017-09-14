@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="/dataDict" prefix="dataDict" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script src="<%=request.getContextPath() %>/static/citys/js/distpicker.data.js?v=3.1415926"></script>
 <script src="<%=request.getContextPath() %>/static/citys/js/distpicker.js?v=3.1415926"></script>
@@ -66,15 +68,15 @@
 							<div class="col-md-4">
                                    <div id="input-error">
                                        <label>
-                                           <input type="radio" name="sex" class="icheck" value="0" ${(userInfo.sex== '0') ? "checked='checked'" : ""}/> 女
+                                           <input type="radio" name="sex" class="icheck" value="0" ${(userInfo.sex== '0') ? "checked='checked'" : ""}/> <dataDict:dataDictValue typeCode="sex" ddKey="0"/>
                                        </label>
                                        
                                        <label>
-                                           <input type="radio" name="sex" class="icheck" value="1" ${(userInfo.sex== '1') ? "checked='checked'" : ""}/> 男
+                                           <input type="radio" name="sex" class="icheck" value="1" ${(userInfo.sex== '1') ? "checked='checked'" : ""}/> <dataDict:dataDictValue typeCode="sex" ddKey="1"/>
                                        </label>
                                         
                                        <label>
-                                           <input type="radio" name="sex" class="icheck" value="2" ${(userInfo.sex== '2') ? "checked='checked'" : ""}/> 保密
+                                           <input type="radio" name="sex" class="icheck" value="2" ${(userInfo.sex== '2') ? "checked='checked'" : ""}/> <dataDict:dataDictValue typeCode="sex" ddKey="2"/>
                                        </label>
                                    </div>
 							</div>
@@ -83,22 +85,27 @@
 						<div class="form-group">
 							<label class="col-md-3 control-label">职业</label>
 							<div class="col-md-4">
-                                   <div id="input-error">
-                                       <select class="form-control" id="job" name="job">
-		                                <option value="8888" ${(userInfo.job== '8888') ? "selected" : ""}>请选择</option>
-		                                <option value="1" ${(userInfo.job== '1') ? "selected" : ""}>Java开发</option>
-										<option value="2" ${(userInfo.job== '2') ? "selected" : ""}>前端开发</option>
-										<option value="3" ${(userInfo.job== '3') ? "selected" : ""}>大数据开发</option>
-										<option value="4" ${(userInfo.job== '4') ? "selected" : ""}>ios开发</option>
-										<option value="5" ${(userInfo.job== '5') ? "selected" : ""}>Android开发</option>
-										<option value="6" ${(userInfo.job== '6') ? "selected" : ""}>Linux系统工程师</option>
-										<option value="7" ${(userInfo.job== '7') ? "selected" : ""}>PHP开发</option>
-										<option value="8" ${(userInfo.job== '8') ? "selected" : ""}>.net开发</option>
-										<option value="9" ${(userInfo.job== '9') ? "selected" : ""}>C/C++</option>
-										<option value="10" ${(userInfo.job== '10') ? "selected" : ""}>学生</option>
-										<option value="11" ${(userInfo.job== '11') ? "selected" : ""}>其它</option>
-		                            </select>
-                                   </div>
+                            	<div id="input-error">
+                                   <select class="form-control" id="job" name="job">
+		                                <option value="0" ${(userInfo.job== '0') ? "selected" : ""}>请选择</option>
+		                                
+		                                <c:forEach items="${ddlist }" var="dd">
+											<option value="${dd.ddkey }" ${(userInfo.job== dd.ddkey) ? "selected" : ""}>${dd.ddvalue }</option>
+										</c:forEach>
+		                                
+<%-- 		                                <option value="1" ${(userInfo.job== '1') ? "selected" : ""}>Java开发</option> --%>
+<%-- 										<option value="2" ${(userInfo.job== '2') ? "selected" : ""}>前端开发</option> --%>
+<%-- 										<option value="3" ${(userInfo.job== '3') ? "selected" : ""}>大数据开发</option> --%>
+<%-- 										<option value="4" ${(userInfo.job== '4') ? "selected" : ""}>ios开发</option> --%>
+<%-- 										<option value="5" ${(userInfo.job== '5') ? "selected" : ""}>Android开发</option> --%>
+<%-- 										<option value="6" ${(userInfo.job== '6') ? "selected" : ""}>Linux系统工程师</option> --%>
+<%-- 										<option value="7" ${(userInfo.job== '7') ? "selected" : ""}>PHP开发</option> --%>
+<%-- 										<option value="8" ${(userInfo.job== '8') ? "selected" : ""}>.net开发</option> --%>
+<%-- 										<option value="9" ${(userInfo.job== '9') ? "selected" : ""}>C/C++</option> --%>
+<%-- 										<option value="10" ${(userInfo.job== '10') ? "selected" : ""}>学生</option> --%>
+<%-- 										<option value="11" ${(userInfo.job== '11') ? "selected" : ""}>其它</option> --%>
+		                        	</select>
+                                </div>
 							</div>
 						</div>
 						

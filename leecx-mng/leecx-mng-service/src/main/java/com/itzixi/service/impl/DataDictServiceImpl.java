@@ -33,6 +33,7 @@ public class DataDictServiceImpl implements DataDictService {
 		PageHelper.startPage(page, pageSize);
 		
 		DataDictExample dde = new DataDictExample();
+		dde.setOrderByClause(" type_code,ddkey asc ");
 		Criteria dc = dde.createCriteria();
 		
 		if (StringUtils.isNotEmpty(typeName)) {

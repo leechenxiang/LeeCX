@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="/dataDict" prefix="dataDict" %>
 
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -47,57 +48,59 @@
 	                            <tr>
 	                                <td> 性别 </td>
 	                                <td>
-	                                    <c:choose>
-	                                     	<c:when test="${userInfo.sex == 0}">
-	                                           	女
-	                                        </c:when>
-	                                        <c:when test="${userInfo.sex == 1}">
-	                                           	男
-	                                        </c:when>
-	                                        <c:otherwise>
-	                                        	保密
-	                                        </c:otherwise>
-	                                    </c:choose>
+	                                	<dataDict:dataDictValue ddKey="${userInfo.sex}" typeCode="sex"/>
+<%-- 	                                    <c:choose> --%>
+<%-- 	                                     	<c:when test="${userInfo.sex == 0}"> --%>
+<!-- 	                                           	女 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.sex == 1}"> --%>
+<!-- 	                                           	男 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:otherwise> --%>
+<!-- 	                                        	保密 -->
+<%-- 	                                        </c:otherwise> --%>
+<%-- 	                                    </c:choose> --%>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <td> 职务 </td>
 	                                <td>
-	                                    <c:choose>
-	                                     	<c:when test="${userInfo.job == 1}">
-	                                           	Java开发
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 2}">
-	                                           	前端开发
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 3}">
-	                                           	大数据开发
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 4}">
-	                                           	ios开发
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 5}">
-	                                           	Android开发
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 6}">
-	                                           	Linux系统工程师
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 7}">
-	                                           	PHP开发
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 8}">
-	                                           	.net开发
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 9}">
-	                                           	C/C++
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 10}">
-	                                           	学生
-	                                        </c:when>
-	                                        <c:when test="${userInfo.job == 11}">
-	                                           	其它
-	                                        </c:when>
-	                                    </c:choose>
+	                                	<dataDict:dataDictValue ddKey="${userInfo.job}" typeCode="job"/>
+<%-- 	                                    <c:choose> --%>
+<%-- 	                                     	<c:when test="${userInfo.job == 1}"> --%>
+<!-- 	                                           	Java开发 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 2}"> --%>
+<!-- 	                                           	前端开发 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 3}"> --%>
+<!-- 	                                           	大数据开发 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 4}"> --%>
+<!-- 	                                           	ios开发 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 5}"> --%>
+<!-- 	                                           	Android开发 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 6}"> --%>
+<!-- 	                                           	Linux系统工程师 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 7}"> --%>
+<!-- 	                                           	PHP开发 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 8}"> --%>
+<!-- 	                                           	.net开发 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 9}"> --%>
+<!-- 	                                           	C/C++ -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 10}"> --%>
+<!-- 	                                           	学生 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                        <c:when test="${userInfo.job == 11}"> --%>
+<!-- 	                                           	其它 -->
+<%-- 	                                        </c:when> --%>
+<%-- 	                                    </c:choose> --%>
 	                                </td>
 	                            </tr>
 	                            <tr>
