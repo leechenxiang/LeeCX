@@ -29,7 +29,8 @@ LeeCX
 ├── leecx-root：母工程，主要用于管理pom
 ├── leecx-common：统一工具类，包含统一的utils以及枚举等
 └── leecx-mng：后台管理系统
-     ├── leecx-mng-pojo：entity，包含pojo，bo以及vo
+     ├── leecx-mng-component：通用组件工程，目前只包含redis
+     ├── leecx-mng-pojo：entity，包含pojo，bo以及vo
      ├── leecx-mng-mapper：mybitas的mapper.xml以及mapper.java文件
      ├── leecx-mng-service：service工程
      └── leecx-mng-web：web工程 (port:8080 可在pom中自由配置)
