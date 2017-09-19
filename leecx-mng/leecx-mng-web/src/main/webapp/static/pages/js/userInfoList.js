@@ -77,7 +77,7 @@ var UserInfoList = function () {
             mtype: "post",  
             styleUI: 'Bootstrap',//设置jqgrid的全局样式为bootstrap样式  
             datatype: "json",  
-            colNames: ['ID', '用户名', '密码', '昵称', '年龄', '性别', '职位', '所在地', '省', '市', '区', '登录IP', '最近登录时间', '注册日期', '操作'],  
+            colNames: ['ID', '用户名', '密码', '昵称', '年龄', '性别', '性别(数据字典)', '职位', '职位(数据字典)', '所在地', '省', '市', '区', '登录IP', '最近登录时间', '注册日期', '操作'],  
             colModel: [  
                 { name: 'id', index: 'id', width: 60, sortable: false, hidden: true },  
                 { name: 'username', index: 'username', width: 30, sortable: false },
@@ -86,12 +86,36 @@ var UserInfoList = function () {
                 { name: 'age', index: 'age', width: 20, sortable: false },
                 { name: 'sex', index: 'sex', width: 20, sortable: false,
                 	formatter:function(cellvalue, options, rowObject) {
-			    		return Common.getSexValue(cellvalue)}  
+                		
+                		var typeCode = "sex";
+                		var ddkey = cellvalue;
+                		var ddvalue = "";
+                		
+                		$.ajax({
+            		    	url: $("#hdnContextPath").val() + "/dataDict/queryDataDictValue.action",
+            		    	type: "POST",
+            		    	async: false,
+            		    	data: {"typeCode": typeCode, "ddkey": ddkey},
+            		    	success: function(data) {
+            		            if(data.status == 200 && data.msg == "OK") {
+            		            	ddvalue = data.data;
+            		            } else {
+            		            	console.log(JSON.stringify(data));
+            		            }
+            		    	},
+            		        error: function (response, ajaxOptions, thrownError) {
+            		        	Error.displayError(response, ajaxOptions, thrownError);                
+            		        }
+            		    });
+                		
+			    		return ddvalue}  
                 },
+                { name: 'sexValue', index: 'sexValue', width: 20, sortable: false },
                 { name: 'job', index: 'job', width: 50, sortable: false,
                 	formatter:function(cellvalue, options, rowObject) {
 			    		return Common.getJobValue(cellvalue)}  
                 },
+                { name: 'jobValue', index: 'jobValue', width: 50, sortable: false },
                 { 
                 	width: 70, sortable: false,
 			    	formatter:function(cellvalue, options, rowObject) {

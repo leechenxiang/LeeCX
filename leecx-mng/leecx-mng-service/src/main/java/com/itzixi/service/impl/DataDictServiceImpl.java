@@ -10,6 +10,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.itzixi.common.enums.YesOrNo;
 import com.itzixi.common.pojo.JqGridResult;
+import com.itzixi.common.utils.JsonUtils;
+import com.itzixi.components.JedisClient;
 import com.itzixi.mapper.DataDictMapper;
 import com.itzixi.pojo.DataDict;
 import com.itzixi.pojo.DataDictExample;
@@ -21,6 +23,9 @@ public class DataDictServiceImpl implements DataDictService {
 	
 	@Autowired
 	private DataDictMapper dataDictMapper;
+	
+	@Autowired
+	private JedisClient jedis;
 	
 	@Override
 	public void saveDataDict(DataDict dataDict) {
@@ -73,6 +78,13 @@ public class DataDictServiceImpl implements DataDictService {
 	
 	@Override
 	public String queryDataDictValueByCodeKey(String typeCode, String ddKey) {
+		String redisKey = "redis_datadict:" + typeCode + ":" + ddKey;
+		// 从缓存中获取数据字典的值，如果没有该值，则从数据库中获取，最后再存入redis中
+		String redisDdvalue = jedis.get(redisKey);
+		if (StringUtils.isNotEmpty(redisDdvalue)) {
+			return redisDdvalue;
+		}
+		
 		DataDictExample dataDictExample = new DataDictExample();
 		Criteria dataDictCriteria = dataDictExample.createCriteria();
 		dataDictCriteria.andTypeCodeEqualTo(typeCode);
@@ -81,7 +93,12 @@ public class DataDictServiceImpl implements DataDictService {
 		List<DataDict> list = dataDictMapper.selectByExample(dataDictExample);
 		if (list != null && list.size() > 0) {
 			DataDict dd = (DataDict)list.get(0);
-			return dd.getDdvalue();
+			
+			String ddvalue = dd.getDdvalue();
+			// 在Redis中设置数据字典的值
+			jedis.set(redisKey, ddvalue);
+			
+			return ddvalue;
 		}
 		
 		return "";
@@ -89,11 +106,23 @@ public class DataDictServiceImpl implements DataDictService {
 	
 	@Override
 	public List<DataDict> queryDataDictListByTypeCode(String typeCode) {
+		String redisKey = "redis_datadict_list:" + typeCode;
+		// 从缓存中获取数据字典的值，如果没有该值，则从数据库中获取，最后再存入redis中
+		String redisDdListJson = jedis.get(redisKey);
+		if (StringUtils.isNotEmpty(redisDdListJson)) {
+			List<DataDict> list = JsonUtils.jsonToList(redisDdListJson, DataDict.class);
+			return list;
+		}
+		
 		DataDictExample dataDictExample = new DataDictExample();
 		Criteria dataDictCriteria = dataDictExample.createCriteria();
 		dataDictCriteria.andTypeCodeEqualTo(typeCode);
 		dataDictCriteria.andIsShowEqualTo(YesOrNo.YES.value);
 		List<DataDict> list = dataDictMapper.selectByExample(dataDictExample);
+		
+		// 在Redis中设置数据字典的值
+		jedis.set(redisKey, JsonUtils.objectToJson(list));
+		
 		return list;
 	}
 }

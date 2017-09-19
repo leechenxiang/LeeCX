@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script src="<%=request.getContextPath() %>/static/pages/js/userInfoList.js?v=3.1415926" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/static/pages/js/userInfoList.js?v=1.0.2" type="text/javascript"></script>
 
 	<!-- BEGIN PAGE HEADER-->
 	<!-- BEGIN PAGE BAR -->

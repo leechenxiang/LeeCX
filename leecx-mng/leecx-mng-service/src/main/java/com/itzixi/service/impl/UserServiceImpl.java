@@ -1,9 +1,12 @@
 package com.itzixi.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.n3r.idworker.Sid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,8 @@ import com.itzixi.mapper.SysUserMapper;
 import com.itzixi.pojo.SysUser;
 import com.itzixi.pojo.SysUserExample;
 import com.itzixi.pojo.SysUserExample.Criteria;
+import com.itzixi.pojo.vo.UserVO;
+import com.itzixi.service.DataDictService;
 import com.itzixi.service.UserService;
 
 @Service
@@ -25,6 +30,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private Sid sid;
+	
+	@Autowired
+	private DataDictService ddService;
 
 	@Override
 	public void saveUser(SysUser user) {
@@ -50,11 +58,27 @@ public class UserServiceImpl implements UserService {
 		
 		List<SysUser> userList = userMapper.selectByExample(ue);
 		
-		PageInfo<SysUser> pageList = new PageInfo<SysUser>(userList);
+		// 转换userlist，使用数据字典
+		List<UserVO> newUserList = new ArrayList<UserVO>();
+		for (SysUser u : userList) {
+			UserVO newUser = new UserVO();
+			BeanUtils.copyProperties(u, newUser);
+			
+			String sexValue = ddService.queryDataDictValueByCodeKey("sex", String.valueOf(newUser.getSex()));
+			newUser.setSexValue(sexValue);
+			
+			String jobValue = ddService.queryDataDictValueByCodeKey("job", String.valueOf(newUser.getJob()));
+			newUser.setJobValue(jobValue);
+			
+			newUserList.add(newUser);
+		}
+		
+		PageInfo<UserVO> pageList = new PageInfo<UserVO>(newUserList);
+//		PageInfo<SysUser> pageList = new PageInfo<SysUser>(userList);
 		
 		JqGridResult grid = new JqGridResult();
 		grid.setTotal(pageList.getPages());
-		grid.setRows(userList);
+		grid.setRows(newUserList);
 		grid.setPage(pageList.getPageNum());
 		grid.setRecords(pageList.getTotal());
 		

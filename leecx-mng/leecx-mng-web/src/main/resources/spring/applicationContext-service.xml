@@ -34,13 +34,13 @@
 		生产环境务必切换成集群
 	 -->
 	<!-- 配置redis客户端单机版 -->
-<!-- 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool"> -->
-<!-- 		<constructor-arg name="host" value="${redis.single.client.host}"></constructor-arg> -->
-<!-- 		<constructor-arg name="port" value="${redis.single.client.port}"></constructor-arg> -->
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="host" value="${redis.single.client.host}"></constructor-arg>
+		<constructor-arg name="port" value="${redis.single.client.port}"></constructor-arg>
 <!-- 		<constructor-arg name="host" value="${redis.uri}"></constructor-arg> -->
-<!-- 	</bean> -->
+	</bean>
 	<!-- 配置redis客户端实现类 -->
-<!-- 	<bean id="jedisClientSingle" class="com.itzixi.components.impl.JedisClientSingle"/> -->
+	<bean id="jedisClientSingle" class="com.itzixi.components.impl.JedisClientSingle"/>
 	
 	
 	<!-- druid spring 监控设置 -->

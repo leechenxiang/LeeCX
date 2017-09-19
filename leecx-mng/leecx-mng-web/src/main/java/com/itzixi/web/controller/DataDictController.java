@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.common.utils.LeeJSONResult;
+import com.itzixi.components.JedisClient;
 import com.itzixi.pojo.DataDict;
 import com.itzixi.service.DataDictService;
 
@@ -156,4 +157,46 @@ public class DataDictController extends BaseController {
 		return LeeJSONResult.ok();
 	}
 	
+	/**
+	 * 
+	 * @Title: DataDictController.java
+	 * @Package com.itzixi.web.controller
+	 * @Description: 用作redis测试的接口
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月18日 下午8:55:32
+	 * @version V1.0
+	 */
+	@RequestMapping("/testRedis")
+	@ResponseBody
+	public LeeJSONResult testRedis(DataDict dd){
+		
+		jedis.set("test_me_redis", "hello redis~~~");
+		String hello = jedis.get("test_me_redis");
+		
+		return LeeJSONResult.ok(hello);
+	}
+	
+	/**
+	 * 
+	 * @Title: DataDictController.java
+	 * @Package com.itzixi.web.controller
+	 * @Description: api接口： 根据字典码和ddkey获取数据字典的值
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年9月18日 下午9:39:03
+	 * @version V1.0
+	 */
+	@RequestMapping("/queryDataDictValue")
+	@ResponseBody
+	public LeeJSONResult queryDataDictValue(String typeCode, String ddkey){
+		
+		String ddvalue = dataDictService.queryDataDictValueByCodeKey(typeCode, ddkey);
+		
+		return LeeJSONResult.ok(ddvalue);
+	}
 }

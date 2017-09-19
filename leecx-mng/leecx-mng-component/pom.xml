@@ -6,26 +6,28 @@
 		<artifactId>leecx-mng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>leecx-mng-service</artifactId>
+	<artifactId>leecx-mng-component</artifactId>
 	
 	<dependencies>
 	
 		<dependency>
 			<groupId>com.itzixi</groupId>
-			<artifactId>leecx-mng-component</artifactId>
+			<artifactId>leecx-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	
+	<!-- Spring -->
 		<dependency>
-			<groupId>com.itzixi</groupId>
-			<artifactId>leecx-mng-mapper</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
 		</dependency>
-		
-		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -47,6 +49,33 @@
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 		</dependency>
+		
+		<!-- freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+		    <artifactId>freemarker</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		</dependency>
+		
+		<!-- spring rabbitmq -->
+<!-- 		<dependency> -->
+<!-- 	        <groupId>org.springframework.amqp</groupId> -->
+<!-- 	        <artifactId>spring-rabbit</artifactId> -->
+<!-- 	    </dependency> -->
+			
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>hibernate-validator</artifactId> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.validation</groupId> -->
+<!-- 			<artifactId>validation-api</artifactId> -->
+<!-- 		</dependency> -->
 		
 	</dependencies>
 	
