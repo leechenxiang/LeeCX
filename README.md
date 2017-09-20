@@ -22,6 +22,11 @@ sts-eclipse, jdk8, tomcat7或8<br />
 6、日志管理：SLF4J + Log4j<br />
 7、前端框架：Bootstrap + Jquery<br />
 
+更新历史：
+20170920 增加component子模块，实现redis供多工程公用；增加数据字典功能（录制的视频链接在底部）<br />
+
+<br />
+
 ### 工程结构：<br />
 ``` lua
 LeeCX
