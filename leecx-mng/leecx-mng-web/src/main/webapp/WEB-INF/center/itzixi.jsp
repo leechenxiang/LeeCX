@@ -109,7 +109,15 @@
 	                </div>
 	            </div>
 	            <div class="portlet-body ">
-	                <div class="row ">
+	            	<div class="row ">
+	                    <div class="col-md-4 ">
+	                        <img src="<%=request.getContextPath() %>/static/pages/img/course/dd.jpg" width="233px" class="img-responsive"/>
+	                    </div>
+	                    <div class="col-md-8 " >
+	                    	<a href="http://www.itzixi.com/course/detail.shtml?courseId=17092078Y3009WX4" target="_blank">《ssm redis 数据字典在J2EE中的多种应用与实现》</a>
+	                    </div>
+	                </div>
+	                <div class="row " style="margin-top: 10px;">
 	                    <div class="col-md-4 ">
 	                        <img src="<%=request.getContextPath() %>/static/pages/img/course/alipay.jpg" width="233px" class="img-responsive"/>
 	                    </div>

@@ -35,9 +35,10 @@
 	 -->
 	<!-- 配置redis客户端单机版 -->
 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-		<constructor-arg name="host" value="${redis.single.client.host}"></constructor-arg>
-		<constructor-arg name="port" value="${redis.single.client.port}"></constructor-arg>
-<!-- 		<constructor-arg name="host" value="${redis.uri}"></constructor-arg> -->
+<!-- 		<constructor-arg name="host" value="${redis.single.client.host}"></constructor-arg> -->
+<!-- 		<constructor-arg name="port" value="${redis.single.client.port}"></constructor-arg> -->
+		<!-- 带密码和不带密码的两种方式 -->
+		<constructor-arg name="host" value="${redis.uri}"></constructor-arg>
 	</bean>
 	<!-- 配置redis客户端实现类 -->
 	<bean id="jedisClientSingle" class="com.itzixi.components.impl.JedisClientSingle"/>
