@@ -43,6 +43,7 @@ LeeCX
 
 
 视频推荐 我们也致力于技术视频的录制，希望大家学到更多的技术...<br />
+[《ssm redis 数据字典在J2EE中的多种应用与实现》](http://www.itzixi.com/course/detail.shtml?courseId=17092078Y3009WX4)<br />
 [《使用新版支付宝接口实现第三方网关支付》](http://www.itzixi.com/course/detail.shtml?courseId=170818C4XS6SPG9P)<br />
 [《SpringMVC 实现web端微信扫码支付(即时到账)》](http://www.itzixi.com/course/detail.shtml?courseId=1709029W0AFN7X1P)<br />
 [《Linux - Java开发者所需要掌握的一门最基本的技能》](http://www.itzixi.com/course/detail.shtml?courseId=170802GTMYF0GYNC)<br />
