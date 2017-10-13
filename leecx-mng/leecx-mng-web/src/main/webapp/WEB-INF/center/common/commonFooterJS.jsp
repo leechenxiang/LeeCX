@@ -11,7 +11,6 @@
 
 <!-- BEGIN CORE PLUGINS -->
 <script src="<%=request.getContextPath() %>/static/global/plugins/jquery.min.js?v=3.1415926" type="text/javascript"></script>
-<%-- <script src="<%=request.getContextPath() %>/static/pages/js/jquery-migrate-1.4.1.js?v=3.1415926" type="text/javascript"></script> --%>
 <script src="<%=request.getContextPath() %>/static/global/plugins/bootstrap/js/bootstrap.min.js?v=3.1415926" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/static/global/plugins/js.cookie.min.js?v=3.1415926" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/static/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js?v=3.1415926" type="text/javascript"></script>
@@ -22,12 +21,7 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="<%=request.getContextPath() %>/static/global/plugins/moment.min.js?v=3.1415926" type="text/javascript"></script>
 
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js?v=3.1415926" type="text/javascript"></script> --%>
 <script src="<%=request.getContextPath() %>/static/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js?v=3.1415926" type="text/javascript"></script>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/clockface/js/clockface.js?v=3.1415926" type="text/javascript"></script> --%>
 
 <script src="<%=request.getContextPath() %>/static/global/plugins/morris/morris.min.js?v=3.1415926" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/static/global/plugins/morris/raphael-min.js?v=3.1415926" type="text/javascript"></script>
@@ -40,13 +34,6 @@
 <script src="<%=request.getContextPath() %>/static/global/plugins/flot/jquery.flot.categories.min.js?v=3.1415926" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/static/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js?v=3.1415926" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/static/global/plugins/jquery.sparkline.min.js?v=3.1415926" type="text/javascript"></script>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/jqvmap/jqvmap/jquery.vmap.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js?v=3.1415926" type="text/javascript"></script> --%>
-<%-- <script src="<%=request.getContextPath() %>/static/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js?v=3.1415926" type="text/javascript"></script> --%>
 
 <script src="<%=request.getContextPath() %>/static/global/plugins/bootstrap-select/js/bootstrap-select.min.js?v=3.1415926" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/static/global/plugins/jquery-multi-select/js/jquery.multi-select.js?v=3.1415926" type="text/javascript"></script>
@@ -99,11 +86,6 @@
 <script src="<%=request.getContextPath() %>/static/global/plugins/counterup/jquery.waypoints.min.js?v=3.1415926" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/static/global/plugins/counterup/jquery.counterup.min.js?v=3.1415926" type="text/javascript"></script>
 
-<%-- <script src="<%=request.getContextPath() %>/static/pages/scripts/components-bootstrap-switch.js?v=3.1415926" ></script> --%>
-
-<%-- <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath() %>/static/global/plugins/umeditor1_2_2-utf8-jsp/umeditor.config.js?v=3.1415926"></script> --%>
-<%-- <script type="text/javascript" charset="utf-8" src="<%=request.getContextPath()%>/static/global/plugins/umeditor1_2_2-utf8-jsp/umeditor.min.js?v=3.1415926"></script> --%>
-<%-- <script type="text/javascript" src="<%=request.getContextPath()%>/static/global/plugins/umeditor1_2_2-utf8-jsp/lang/zh-cn/zh-cn.js?v=3.1415926"></script> --%>
 
 <!-- END PAGE LEVEL SCRIPTS -->
 

@@ -5,7 +5,7 @@
 	<!-- BEGIN HEAD -->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>LeeCX - 后台管理系统</title>
+        <title>LeeCX 开源后台管理系统 | itzixi.com</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="尚自习 - 程序员的进阶平台 | www.itzixi.com" name="description" />
