@@ -72,14 +72,14 @@ var Login = function() {
             }
         });
 
-        $('#forget-password').click(function(){
+        $('#register-btn').click(function(){
+            $('.register-form').show();
             $('.login-form').hide();
-            $('.forget-form').show();
         });
-
-        $('#back-btn').click(function(){
+        
+        $('#register-back-btn').click(function(){
+            $('.register-form').hide();
             $('.login-form').show();
-            $('.forget-form').hide();
         });
     }
     
