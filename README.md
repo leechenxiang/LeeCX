@@ -20,7 +20,7 @@ sts-eclipse, jdk8, tomcat7或8<br />
 4、数据库连接池：阿里巴巴 Druid 1.1.0<br />
 5、缓存：Redis/Jedis 2.8.0<br />
 6、日志管理：SLF4J + Log4j<br />
-7、前端框架：Bootstrap + Jquery<br />
+7、前端框架/组件：Bootstrap + Jquery + Jquery Validate + jqGrid + sweetalert + blockUI + icheck<br />
 
 ### 更新历史：<br />
 20170919 增加component子模块，实现redis供多工程公用；增加数据字典功能（录制的视频链接在底部）<br />
