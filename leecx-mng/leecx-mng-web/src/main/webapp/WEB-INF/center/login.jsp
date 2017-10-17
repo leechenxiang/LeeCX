@@ -94,13 +94,6 @@
                     </div> 
                 </div>
                 <div class="form-group">
-                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                    <label class="control-label visible-ie8 visible-ie9">昵称</label>
-                    <div id="input-error">
-                    	<input class="form-control placeholder-no-fix" type="text" placeholder="昵称" name="nickname" />
-                    </div> 
-                </div>
-                <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">密码</label>
                     <div id="input-error">
                     	<input class="form-control placeholder-no-fix" type="text" placeholder="密码" name="password" />

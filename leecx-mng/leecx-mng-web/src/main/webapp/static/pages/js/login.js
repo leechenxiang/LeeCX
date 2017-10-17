@@ -96,9 +96,6 @@ var Login = function() {
                 },
                 password: {
                     required: true
-                },
-                nickname: {
-                	required: true
                 }
             },
 
@@ -108,9 +105,6 @@ var Login = function() {
                 },
                 password: {
                     required: "密码不能为空."
-                },
-                nickname: {
-                	required: "昵称不能为空."
                 }
             },
 
