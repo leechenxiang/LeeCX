@@ -86,23 +86,25 @@
             <!-- END LOGIN FORM -->
 
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="index.html" method="post">
+            <form class="register-form">
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">用户名</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="用户名" name="username" /> 
+                    <div id="input-error">
+                    	<input class="form-control placeholder-no-fix" type="text" placeholder="用户名" name="username" />
+                    </div> 
                 </div>
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">昵称</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="昵称" name="nickname" /> 
+                    <div id="input-error">
+                    	<input class="form-control placeholder-no-fix" type="text" placeholder="昵称" name="nickname" />
+                    </div> 
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">密码</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="密码" name="password" /> 
-                </div>
-                <div class="form-group">
-                    <label class="control-label visible-ie8 visible-ie9">确认密码</label>
-                    <input class="form-control placeholder-no-fix" type="text" placeholder="确认密码" name="confirmPassword" /> 
+                    <div id="input-error">
+                    	<input class="form-control placeholder-no-fix" type="text" placeholder="密码" name="password" />
+                    </div> 
                 </div>
                 <div class="form-actions">
                     <button type="button" id="register-back-btn" class="btn btn-default">返 回</button>
@@ -124,7 +126,7 @@
 	    <jsp:include page="common/commonFooterJS.jsp"></jsp:include>
 	    <!-- 公用尾部JS end -->
     
-        <script src="<%=request.getContextPath() %>/static/pages/js/login.js?v=1.0.1" type="text/javascript"></script>
+        <script src="<%=request.getContextPath() %>/static/pages/js/login.js?v=1.0.21" type="text/javascript"></script>
         
 </body>
 </html>
