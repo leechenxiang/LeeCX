@@ -119,7 +119,7 @@
 	    <jsp:include page="common/commonFooterJS.jsp"></jsp:include>
 	    <!-- 公用尾部JS end -->
     
-        <script src="<%=request.getContextPath() %>/static/pages/js/login.js?v=1.0.21" type="text/javascript"></script>
+        <script src="<%=request.getContextPath() %>/static/pages/js/login.js?v=1.0.4" type="text/javascript"></script>
         
 </body>
 </html>

@@ -89,4 +89,18 @@ public interface UserService {
 	 * @date 2017年9月5日 下午4:23:18
 	 */
 	public boolean queryUsernameIsExist(String username, String userId);
+	
+	/**
+	 * 
+	 * @Title: UserService.java
+	 * @Package com.itzixi.service
+	 * @Description: 根据用户查询用户信息，如果查不到，则返回空，用于登录查询
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年10月19日 下午9:06:41
+	 * @version V1.0
+	 */
+	public SysUser queryUserByUsername(String username);
 }

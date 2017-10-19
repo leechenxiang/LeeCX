@@ -40,7 +40,7 @@ var Login = function() {
 
             submitHandler: function(form) {
             	
-            	var loginForm = $('#login-form');
+            	var loginForm = $('.login-form');
             	var hdnContextPath = $("#hdnContextPath").val();
             	loginForm.ajaxSubmit({
             		dataType: "json",
@@ -50,7 +50,7 @@ var Login = function() {
                     success: function(data) {
                         // 登录成功或者失败的提示信息
                         if (data.status == 200 && data.msg == "OK") {
-                        	
+                        	window.location.href = hdnContextPath + "/center.action";
                         } else {
                         	SweetAlert.error(data.msg);
                         }

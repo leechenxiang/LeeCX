@@ -135,4 +135,19 @@ public class UserServiceImpl implements UserService {
 		int counts = userMapper.countByExample(userExample);
 		return counts > 0;
 	}
+	
+	@Override
+	public SysUser queryUserByUsername(String username) {
+		
+		SysUserExample userExample = new SysUserExample();
+		Criteria userCriteria = userExample.createCriteria();
+		userCriteria.andUsernameEqualTo(username);
+		List<SysUser> userList = userMapper.selectByExample(userExample);
+		
+		if ( userList != null && !userList.isEmpty() ) {
+			return userList.get(0);
+		}
+		
+		return null;
+	}
 }
