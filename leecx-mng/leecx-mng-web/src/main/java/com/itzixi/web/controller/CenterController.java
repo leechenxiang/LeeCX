@@ -100,6 +100,7 @@ public class CenterController extends BaseController {
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         Subject subject = SecurityUtils.getSubject();
+        // 主体用户退出
         subject.logout();
         
         return "redirect:/login.action";
