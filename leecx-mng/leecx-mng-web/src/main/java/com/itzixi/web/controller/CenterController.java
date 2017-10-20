@@ -9,19 +9,24 @@ import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itzixi.common.utils.JsonUtils;
 import com.itzixi.common.utils.LeeJSONResult;
+import com.itzixi.common.utils.NumberUtil;
+import com.itzixi.pojo.SysUser;
+import com.itzixi.service.UserService;
+import com.itzixi.web.shiro.ShiroPasswordUtil;
 
 /**
  * 
@@ -40,6 +45,9 @@ public class CenterController extends BaseController {
 	
 	final static Logger log = LoggerFactory.getLogger(CenterController.class);
 	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping("/center")
 	public ModelAndView index() {
 		
@@ -51,7 +59,10 @@ public class CenterController extends BaseController {
 //	@GetMapping("/login")
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String doGetlogin() {
-		
+		// 判断当前的subjec用户是否存在，并且是登录状态，如果是，那就跳转到首页，如果不是，那就跳转到登录页面
+		if (SecurityUtils.getSubject().isAuthenticated()) {
+            return "redirect:/";
+        }
 		return "login";
 	}
 	
@@ -105,4 +116,44 @@ public class CenterController extends BaseController {
         
         return "redirect:/login.action";
     }
+    
+    /**
+     * 
+     * @Title: CenterController.java
+     * @Package com.itzixi.web.controller
+     * @Description: 注册用户
+     * Copyright: Copyright (c) 2017
+     * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+     * 
+     * @author leechenxiang
+     * @date 2017年10月20日 下午8:36:38
+     * @version V1.0
+     */
+    @PostMapping("/regist")
+    @ResponseBody
+	public LeeJSONResult regist(String username, String password, HttpServletRequest request, HttpServletResponse response) {
+
+    	SysUser user = new SysUser();
+    	user.setUsername(username);
+    	
+    	// 生成4位随机组合字符作为权限的盐
+    	String authSalt = NumberUtil.getStringRandom(4);
+    	
+    	user.setPassword(ShiroPasswordUtil.getShiroPassword(password, authSalt, 2));
+    	user.setAuthSalt(authSalt);
+    	user.setNickname(username);
+    	
+		// 验证一致，先注册用户
+		boolean registFlag = userService.saveUser(user);
+		if (!registFlag) {
+			return LeeJSONResult.errorMsg("注册失败！请返回首页重新注册.");
+		}
+		
+		// 为了让用户在注册成功，直接访问首页，所以在注册超成功后，需要手动执行登陆
+		Subject userShiro = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
+        userShiro.login(token);
+        
+		return LeeJSONResult.ok();
+	} 
 }

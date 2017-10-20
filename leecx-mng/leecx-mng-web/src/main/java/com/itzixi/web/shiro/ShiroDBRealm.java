@@ -58,7 +58,7 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		
 		String dbPassword = user.getPassword();
 		String dbSalt = user.getAuthSalt();
-		String userPassword = new Md5Hash(password, dbSalt, 2).toString();
+		String userPassword = ShiroPasswordUtil.getShiroPassword(password, dbSalt, 2);
 		
 		if (!userPassword.equals(dbPassword)) {
 			// 抛出一个异常，密码不正确

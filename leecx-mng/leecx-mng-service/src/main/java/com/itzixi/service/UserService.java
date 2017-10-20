@@ -25,7 +25,7 @@ public interface UserService {
 	 * @author leechenxiang
 	 * @date 2017年9月5日 上午11:13:38
 	 */
-	public void saveUser(SysUser user);
+	public boolean saveUser(SysUser user);
 	
 	/**
 	 * 

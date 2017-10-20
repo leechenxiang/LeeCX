@@ -1,9 +1,9 @@
 package com.itzixi.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
@@ -35,11 +35,14 @@ public class UserServiceImpl implements UserService {
 	private DataDictService ddService;
 
 	@Override
-	public void saveUser(SysUser user) {
+	public boolean saveUser(SysUser user) {
 		
 		String userId = sid.nextShort();
 		user.setId(userId);
-		userMapper.insert(user);
+		user.setRegistTime(new Date());
+		user.setIsDelete(YesOrNo.NO.value);
+		int result = userMapper.insert(user);
+		return result == 1 ? true : false;
 	}
 
 	@Override

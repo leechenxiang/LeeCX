@@ -123,7 +123,7 @@ var Login = function() {
 
             submitHandler: function(form) {
             	
-            	var registForm = $('#register-form');
+            	var registForm = $('.register-form');
             	var hdnContextPath = $("#hdnContextPath").val();
             	registForm.ajaxSubmit({
             		dataType: "json",
@@ -133,7 +133,7 @@ var Login = function() {
                     success: function(data) {
                         // 登录成功或者失败的提示信息
                         if (data.status == 200 && data.msg == "OK") {
-                        	
+                        	SweetAlert.userRegistSuccess();
                         } else {
                         	SweetAlert.error(data.msg);
                         }

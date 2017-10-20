@@ -45,6 +45,7 @@
                 /static/** = anon
                 
                 /login.action = anon
+                /regist.action = anon
                 
                 /** = authc
             </value>
