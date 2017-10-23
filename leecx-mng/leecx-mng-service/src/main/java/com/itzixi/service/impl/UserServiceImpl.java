@@ -14,7 +14,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.itzixi.common.enums.YesOrNo;
 import com.itzixi.common.pojo.JqGridResult;
+import com.itzixi.mapper.SysPermissionMapperCustom;
 import com.itzixi.mapper.SysUserMapper;
+import com.itzixi.pojo.SysPermission;
 import com.itzixi.pojo.SysUser;
 import com.itzixi.pojo.SysUserExample;
 import com.itzixi.pojo.SysUserExample.Criteria;
@@ -33,6 +35,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private DataDictService ddService;
+	
+	@Autowired
+	private SysPermissionMapperCustom sysPermissionMapperCustom;
 
 	@Override
 	public boolean saveUser(SysUser user) {
@@ -152,5 +157,10 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public List<SysPermission> findPermissionListByUserId(String userid) throws Exception {
+		return sysPermissionMapperCustom.findPermissionListByUserId(userid);
 	}
 }

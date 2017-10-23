@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itzixi.mapper.SysPermissionMapperCustom" >
+  
+  <!-- 根据userid查询权限资源字符串 -->
+  <select id="findPermissionListByUserId" parameterType="string" resultType="com.itzixi.pojo.SysPermission">
+	SELECT
+		*
+	FROM
+		sys_permission
+	WHERE 
+<!-- 		TYPE = 2 -->
+<!-- 	AND  -->
+		id 
+	IN
+		(
+			SELECT 
+				sys_permission_id 
+			FROM 
+				sys_role_permission 
+			WHERE 
+				sys_role_id 
+			IN 
+				(SELECT sys_role_id FROM sys_user_role WHERE sys_user_id = #{id})
+		)
+  </select>
+  
+   <!-- 根据userid动态查询菜单资源url -->
+  <select id="findMenuListByUserId"  parameterType="string" resultType="com.itzixi.pojo.SysPermission">
+	SELECT
+		*
+	FROM
+		sys_permission
+	WHERE 
+		TYPE = 1
+	AND 
+		id 
+	IN
+		(
+			SELECT 
+				sys_permission_id FROM sys_role_permission WHERE sys_role_id 
+			IN 
+				(SELECT sys_role_id FROM sys_user_role WHERE sys_user_id = #{id})
+		)
+  </select>
+  
+</mapper>

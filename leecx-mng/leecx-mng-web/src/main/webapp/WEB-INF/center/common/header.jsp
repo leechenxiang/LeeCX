@@ -29,7 +29,7 @@
                 <li class="dropdown dropdown-user">
                     <a href="<%=request.getContextPath()%>/center.shtml" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 <%--                         <img alt="" class="img-circle" src="<shiro:principal property="faceImage"/>" /> --%>
-<%--                         <span class="username username-hide-on-mobile"> <shiro:principal property="nickname"/> </span> --%>
+                        <span class="username username-hide-on-mobile"> <shiro:principal property="username"/> </span>
 <%--                         <input type="hidden" id="activeUserId" name="activeUserId" value="<shiro:principal property="userId"/>"/> --%>
                         &nbsp;
 <!--                         <i class="fa fa-angle-down"></i> -->

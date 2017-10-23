@@ -12,8 +12,7 @@
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 		<jdbcConnection 
 			driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/leecx" 
-			userId="root"
+			connectionURL="jdbc:mysql://localhost:3306/leecx" userId="root"
 			password="root">
 		</jdbcConnection>
 		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
@@ -47,7 +46,10 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table schema="" tableName="data_dict"></table>
+		<table schema="" tableName="sys_permission"></table>
+		<table schema="" tableName="sys_role"></table>
+		<table schema="" tableName="sys_role_permission"></table>
+		<table schema="" tableName="sys_user_role"></table>
 
 	</context>
 </generatorConfiguration>

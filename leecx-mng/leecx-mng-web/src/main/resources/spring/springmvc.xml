@@ -22,9 +22,9 @@
 	<!-- 开启aop，对类代理 -->
 	<aop:config proxy-target-class="true"></aop:config>
 	<!-- 开启shiro注解支持 -->
-<!-- 	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"> -->
-<!-- 		<property name="securityManager" ref="securityManager" /> -->
-<!-- 	</bean> -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
 
 	<!-- 静态资源映射 -->
 	<!-- 缓存存在时间 cache-period 1年 -->

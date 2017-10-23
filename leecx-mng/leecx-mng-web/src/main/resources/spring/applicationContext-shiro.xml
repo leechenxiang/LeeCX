@@ -22,7 +22,6 @@
     <bean id="shiroDbRealm" class="com.itzixi.web.shiro.ShiroDBRealm">
     </bean>
 
-
     <!-- Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <!-- 安全管理器 -->
@@ -51,5 +50,12 @@
             </value>
         </property>
     </bean>
+    
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+	<!-- AOP式方法级权限检查  -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    
     
 </beans>
