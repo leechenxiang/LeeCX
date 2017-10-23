@@ -17,6 +17,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itzixi.pojo.ActiveUser;
+import com.itzixi.pojo.SysPermission;
 import com.itzixi.pojo.SysUser;
 import com.itzixi.service.UserService;
 
@@ -66,6 +67,7 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		}
 		
 		ActiveUser activeUser = new ActiveUser();
+		activeUser.setUserId(user.getId());
 		activeUser.setUsername(user.getUsername());
 		
 		// 4. 返回AuthenticationInfo
@@ -85,19 +87,24 @@ public class ShiroDBRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		
 		// 从principals中获取当前用户
-		SysUser sessionUser = (SysUser)principals.getPrimaryPrincipal();
+		ActiveUser sessionUser = (ActiveUser)principals.getPrimaryPrincipal();
+		String userid = sessionUser.getUserId();
 		
 		// 模拟从数据库中获取用户的权限（资源权限字符串）
-//		List<String> permissionList = UserService.getPermissions(sessionUser);
+		List<SysPermission> permissionList = null;
+		try {
+			permissionList = userService.findPermissionListByUserId(userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		List<String> permissionList = new ArrayList<String>();
-		permissionList.add("user:add");
-		permissionList.add("user:del");
-		permissionList.add("user:mod");
-		permissionList.add("dept:queryall");
+		List<String> percodeList = new ArrayList<String>();
+		for (SysPermission p : permissionList) {
+			percodeList.add(p.getPercode());
+		}
 		
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-		simpleAuthorizationInfo.addStringPermissions(permissionList);
+		simpleAuthorizationInfo.addStringPermissions(percodeList);
 		
 		return simpleAuthorizationInfo;
 	}

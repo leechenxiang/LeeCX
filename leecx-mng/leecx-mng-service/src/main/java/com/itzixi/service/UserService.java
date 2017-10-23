@@ -1,6 +1,9 @@
 package com.itzixi.service;
 
+import java.util.List;
+
 import com.itzixi.common.pojo.JqGridResult;
+import com.itzixi.pojo.SysPermission;
 import com.itzixi.pojo.SysUser;
 
 /**
@@ -103,4 +106,18 @@ public interface UserService {
 	 * @version V1.0
 	 */
 	public SysUser queryUserByUsername(String username);
+	
+	/**
+	 * 
+	 * @Title: UserService.java
+	 * @Package com.itzixi.service
+	 * @Description: 根据用户id查询用户的权限资源字符串percode
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年10月22日 下午9:35:34
+	 * @version V1.0
+	 */
+	public List<SysPermission> findPermissionListByUserId(String userid) throws Exception ;
 }
