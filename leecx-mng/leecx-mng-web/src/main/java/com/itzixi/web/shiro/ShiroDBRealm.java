@@ -3,6 +3,7 @@ package com.itzixi.web.shiro;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -11,10 +12,10 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.itzixi.pojo.ActiveUser;
 import com.itzixi.pojo.SysPermission;
@@ -33,6 +34,7 @@ import com.itzixi.service.UserService;
  * @date 2017年10月9日 下午8:32:37
  * @version V1.0
  */
+@Component
 public class ShiroDBRealm extends AuthorizingRealm {
 	
 	@Autowired
@@ -109,5 +111,16 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		return simpleAuthorizationInfo;
 	}
 
+	/**
+	 * 
+	 * @Description: 权限修改生效后，立即刷新清空缓存，则可以实现用户不退出生效新的权限
+	 * 
+	 * @author leechenxiang
+	 * @date 2016年9月29日 下午9:34:07
+	 */
+	public void clearCache() {
+		PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+		super.clearCache(principals);
+	}
 }
 

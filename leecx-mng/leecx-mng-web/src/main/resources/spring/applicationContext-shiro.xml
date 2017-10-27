@@ -16,6 +16,8 @@
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     	<property name="realm" ref="shiroDbRealm"/>
+    	<!-- 设置缓存管理器为 ehcache -->
+    	<property name="cacheManager" ref="shiroEhcacheManager"></property>
     </bean>
 
     <!-- 项目自定义的Realm -->
@@ -57,5 +59,9 @@
 	<!-- AOP式方法级权限检查  -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
     
+    <!-- 用户授权信息Cache, 采用EhCache -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:shiro/ehcache-shiro.xml"/>
+    </bean>
     
 </beans>
