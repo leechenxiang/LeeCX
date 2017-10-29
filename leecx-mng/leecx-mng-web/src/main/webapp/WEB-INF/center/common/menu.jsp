@@ -105,6 +105,11 @@
                                 <span class="title">shiro 页面</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="<%=request.getContextPath() %>/shiroTest/clearCache.action" class="ajaxify nav-link ">
+                                <span class="title">清理授权缓存</span>
+                            </a>
+                        </li>
                     </ul>
                	</li>
 				

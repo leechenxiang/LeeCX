@@ -631,7 +631,7 @@ var Layout = function () {
                 },
                 error: function (response, ajaxOptions, thrownError) {
                     App.stopPageLoading();
-                    
+                    debugger;
                     if (response.status == 404) {// 页面没有找到
                     	pageContent.html('<h4><div>404...</div><div>找不到页面...</div></h4>');
                     } else if (response.status == 401) {// session过期
