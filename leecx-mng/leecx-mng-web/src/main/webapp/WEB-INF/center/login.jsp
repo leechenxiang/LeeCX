@@ -71,7 +71,7 @@
                 <div class="form-actions">
                     <div class="pull-left">
                         <label class="rememberme mt-checkbox mt-checkbox-outline">
-                            <input type="checkbox" name="remember" value="1" /> 记住我
+                            <input type="checkbox" name="isRememberMe" value="1" /> 记住我
                             <span></span>
                         </label>
                     </div>

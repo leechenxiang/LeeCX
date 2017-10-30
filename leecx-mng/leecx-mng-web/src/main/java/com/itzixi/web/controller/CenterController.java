@@ -18,6 +18,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,7 +70,7 @@ public class CenterController extends BaseController {
 //	@PostMapping("/login")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public LeeJSONResult doPostlogin(String username, String password, HttpServletRequest request, HttpServletResponse response) {
+	public LeeJSONResult doPostlogin(String username, String password, @RequestParam(value="isRememberMe", defaultValue="0") Integer isRememberMe, HttpServletRequest request, HttpServletResponse response) {
 		
 		if (StringUtils.isBlank(username)) {
             return LeeJSONResult.errorMsg("用户名不能为空");
@@ -80,6 +81,10 @@ public class CenterController extends BaseController {
         Subject user = SecurityUtils.getSubject();
         
         UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
+        
+        if (isRememberMe == 1) {
+        	token.setRememberMe(true);
+        }
         
         try {
             user.login(token);
