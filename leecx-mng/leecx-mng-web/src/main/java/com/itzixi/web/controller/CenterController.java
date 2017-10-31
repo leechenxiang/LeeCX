@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itzixi.common.utils.CookieUtils;
 import com.itzixi.common.utils.JsonUtils;
 import com.itzixi.common.utils.LeeJSONResult;
 import com.itzixi.common.utils.NumberUtil;
@@ -161,4 +162,49 @@ public class CenterController extends BaseController {
         
 		return LeeJSONResult.ok();
 	} 
+    
+    /**
+     * 
+     * @Title: CenterController.java
+     * @Package com.itzixi.web.controller
+     * @Description: 测试cookie - 存入cookie的值
+     * Copyright: Copyright (c) 2017
+     * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+     * 
+     * @author leechenxiang
+     * @date 2017年10月31日 下午8:38:47
+     * @version V1.0
+     */
+    @RequestMapping(value = "/setCookie")
+    @ResponseBody
+    public LeeJSONResult setCookie(HttpServletRequest request, HttpServletResponse response) {
+    	// 1. 构建购物车对象
+    	// 2. 封装这个对象为json字符串（json对象）
+    	// 3. 对这个json对象进行base64加密
+    	// 4. 把这个加密后的base64字符串，存入cookie中
+    	CookieUtils.setCookie(request, response, "leecxBuyShop", "cart-bean-json-value", 7*24*60*60);
+    	
+        return LeeJSONResult.ok("设置cookie成功");
+    }
+    
+    /**
+     * 
+     * @Title: CenterController.java
+     * @Package com.itzixi.web.controller
+     * @Description: 测试cookie - 获取cookie中的值
+     * Copyright: Copyright (c) 2017
+     * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+     * 
+     * @author leechenxiang
+     * @date 2017年10月31日 下午8:39:03
+     * @version V1.0
+     */
+    @RequestMapping(value = "/getCookie")
+    @ResponseBody
+    public LeeJSONResult getCookie(HttpServletRequest request, HttpServletResponse response) {
+    	
+    	String cookieValue = CookieUtils.getCookieValue(request, "leecxBuyShop");
+    	
+        return LeeJSONResult.ok("获取cookie成功，值为：" + cookieValue);
+    }
 }
