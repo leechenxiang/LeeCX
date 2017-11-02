@@ -21,7 +21,7 @@
     	<!-- 配置sessionManager，提供session管理 -->
     	<property name="sessionManager" ref="sessionManager"></property>
     	<!-- 配置记住我 -->
-    	<property name="rememberMeManager" ref="rememberMeManager"></property>
+<!--     	<property name="rememberMeManager" ref="rememberMeManager"></property> -->
     </bean>
     
     <!-- 记住密码Cookie -->
@@ -76,7 +76,7 @@
                 /login.action = anon
                 /regist.action = anon
                 
-                /** = user
+                /** = authc
 <!--                 authc -->
             </value>
         </property>
