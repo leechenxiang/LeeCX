@@ -11,7 +11,7 @@ import com.github.pagehelper.PageInfo;
 import com.itzixi.common.enums.YesOrNo;
 import com.itzixi.common.pojo.JqGridResult;
 import com.itzixi.common.utils.JsonUtils;
-import com.itzixi.components.JedisClient;
+import com.itzixi.components.utils.RedisOperator;
 import com.itzixi.mapper.DataDictMapper;
 import com.itzixi.pojo.DataDict;
 import com.itzixi.pojo.DataDictExample;
@@ -24,8 +24,11 @@ public class DataDictServiceImpl implements DataDictService {
 	@Autowired
 	private DataDictMapper dataDictMapper;
 	
+//	@Autowired
+//	private JedisClient jedis;
+	
 	@Autowired
-	private JedisClient jedis;
+	private RedisOperator jedis;
 	
 	@Override
 	public void saveDataDict(DataDict dataDict) {

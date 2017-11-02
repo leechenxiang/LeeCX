@@ -207,4 +207,47 @@ public class CenterController extends BaseController {
     	
         return LeeJSONResult.ok("获取cookie成功，值为：" + cookieValue);
     }
+    
+    /**
+     * 
+     * @Title: CenterController.java
+     * @Package com.itzixi.web.controller
+     * @Description: 测试redisTemplate - 设置redis的值
+     * Copyright: Copyright (c) 2017
+     * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+     * 
+     * @author leechenxiang
+     * @date 2017年11月2日 下午9:13:56
+     * @version V1.0
+     */
+    @RequestMapping(value = "/setRedis")
+    @ResponseBody
+    public LeeJSONResult setRedis(HttpServletRequest request, HttpServletResponse response) {
+    	
+    	jedis.set("redisTemplateTest", "hello redis template~~~", 5000);
+    	
+        return LeeJSONResult.ok("设置redis成功");
+    }
+    
+    /**
+     * 
+     * @Title: CenterController.java
+     * @Package com.itzixi.web.controller
+     * @Description: 测试redisTemplate - 获取redis的值
+     * Copyright: Copyright (c) 2017
+     * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+     * 
+     * @author leechenxiang
+     * @date 2017年10月31日 下午8:39:03
+     * @version V1.0
+     */
+    @RequestMapping(value = "/getRedisValue")
+    @ResponseBody
+    public LeeJSONResult getRedisValue(HttpServletRequest request, HttpServletResponse response) {
+    	
+    	String redisValue = jedis.get("redisTemplateTest");
+    	long ttl = jedis.ttl("redisTemplateTest");
+    	
+        return LeeJSONResult.ok("获取redis成功，值为：" + redisValue + ", 剩余时间ttl为：" + ttl);
+    }
 }

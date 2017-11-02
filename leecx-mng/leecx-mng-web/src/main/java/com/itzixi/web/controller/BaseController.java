@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 import com.itzixi.components.JedisClient;
+import com.itzixi.components.utils.RedisOperator;
 import com.itzixi.pojo.ActiveUser;
 
 /**
@@ -28,8 +29,11 @@ import com.itzixi.pojo.ActiveUser;
  */
 public class BaseController {
 	
+//	@Autowired
+//	public JedisClient jedis;
+	
 	@Autowired
-	public JedisClient jedis;
+	public RedisOperator jedis;
 	
 //	@Value("${REDIS_SESSION_KEY}")
 //	public String REDIS_SESSION_KEY;
