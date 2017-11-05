@@ -17,7 +17,8 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     	<property name="realm" ref="shiroDbRealm"/>
     	<!-- 设置缓存管理器为 ehcache -->
-    	<property name="cacheManager" ref="shiroEhcacheManager"></property>
+<!--     	<property name="cacheManager" ref="shiroEhcacheManager"></property> -->
+    	<property name="cacheManager" ref="shiroRedisCacheManager"></property>
     	<!-- 配置sessionManager，提供session管理 -->
     	<property name="sessionManager" ref="sessionManager"></property>
     	<!-- 配置记住我 -->
@@ -40,6 +41,13 @@
 
     <!-- 项目自定义的Realm -->
     <bean id="shiroDbRealm" class="com.itzixi.web.shiro.ShiroDBRealm">
+    	<constructor-arg index="0" name="cacheManager" ref="shiroRedisCacheManager"/>
+    	<!-- 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
+        <property name="authenticationCachingEnabled" value="true"/>
+        <!-- 缓存AuthenticationInfo信息的缓存名称 -->
+        <property name="authenticationCacheName" value="authenticationCache"/>
+        <!-- 缓存AuthorizationInfo信息的缓存名称 -->
+        <property name="authorizationCacheName" value="authorizationCache"/>
     </bean>
 
     <!-- Shiro Filter -->
@@ -91,6 +99,11 @@
     <!-- 用户授权信息Cache, 采用EhCache -->
     <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:shiro/ehcache-shiro.xml"/>
+    </bean>
+    
+    <!-- 用户授权信息Cache, 采用spring-cache, 具体请查看spring-ehcache.xml、spring-redis.xml -->
+    <bean id="shiroRedisCacheManager" class="com.itzixi.web.shiro.ShiroSpringCacheManager">
+        <property name="cacheManager" ref="cacheManager"/>
     </bean>
     
     <!-- 会话管理器 start -->

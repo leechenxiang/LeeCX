@@ -12,6 +12,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,11 @@ public class ShiroDBRealm extends AuthorizingRealm {
 	
 	@Autowired
 	private UserService userService; 
-
+	
+	public ShiroDBRealm(CacheManager cacheManager) {
+        super(cacheManager);
+    }
+	
 	/**
 	 * 用于登录认证
 	 */

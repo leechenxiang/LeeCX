@@ -30,54 +30,56 @@
 
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connectionFactory-ref="jedisConnectionFactory">
     <!-- 若使用redis作为shiro的缓存，则开放此处，需要使用jdk序列化 -->
-<!--         <property name="keySerializer"> -->
-<!--             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"></bean> -->
-<!--         </property> -->
-<!--         <property name="valueSerializer"> -->
-<!--             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/> -->
-<!--         </property> -->
-<!--         <property name="hashKeySerializer"> -->
-<!--             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/> -->
-<!--         </property> -->
-<!--         <property name="hashValueSerializer"> -->
-<!--             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/> -->
-<!--         </property> -->
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"></bean>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <property name="hashValueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
         
         <!-- 若不使用redis作为shiro的缓存，则开放此处，使用string序列化即可，jdk序列化在redis中的key值 不好看 -->
-        <property name="keySerializer">  
-	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
-	    </property>  
-	    <property name="valueSerializer">  
-	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
-	    </property>  
-	    <property name="hashKeySerializer">  
-	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
-	    </property>  
-	    <property name="hashValueSerializer">  
-	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
-	    </property> 
+<!--         <property name="keySerializer">   -->
+<!-- 	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />   -->
+<!-- 	    </property>   -->
+<!-- 	    <property name="valueSerializer">   -->
+<!-- 	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />   -->
+<!-- 	    </property>   -->
+<!-- 	    <property name="hashKeySerializer">   -->
+<!-- 	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />   -->
+<!-- 	    </property>   -->
+<!-- 	    <property name="hashValueSerializer">   -->
+<!-- 	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />   -->
+<!-- 	    </property>  -->
     </bean>
 
     <!--spring cache-->
-<!--     <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" c:redisOperations-ref="redisTemplate"> -->
+    <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" c:redisOperations-ref="redisTemplate">
 <!--         默认缓存10分钟 -->
-<!--         <property name="defaultExpiration" value="10"/> -->
-<!--         <property name="usePrefix" value="true"/> -->
+        <property name="defaultExpiration" value="10"/>
+        <!-- key:prefix -->
+        <property name="usePrefix" value="true"/>
 <!--         cacheName 缓存超时配置，半小时，一小时，一天 -->
-<!--         <property name="expires"> -->
-<!--             <map key-type="java.lang.String" value-type="java.lang.Long"> -->
-<!--                 <entry key="halfHour" value="1800"/> -->
-<!--                 <entry key="hour" value="3600"/> -->
-<!--                 <entry key="oneDay" value="86400"/> -->
-<!--                 <entry key="itzixiCaptcha" value="500"/> -->
+        <property name="expires">
+            <map key-type="java.lang.String" value-type="java.lang.Long">
+                <entry key="halfHour" value="1800"/>
+                <entry key="hour" value="3600"/>
+                <entry key="oneDay" value="86400"/>
+                <entry key="itzixiCaptcha" value="500"/>
 <!--                 shiro cache keys -->
-<!--                 <entry key="authenticationCache" value="1800"/>		用户每次操作后会要等缓存过期后会重新再取 -->
-<!--                 <entry key="authorizationCache" value="1800"/>		用户每次操作后会要等缓存过期后会重新再取 -->
-<!--                 <entry key="activeSessionCache" value="1800"/>		用户session每次操作后会重置时间 -->
-<!--             </map> -->
-<!--         </property> -->
-<!--     </bean> -->
+                <entry key="authenticationCache" value="1800"/><!-- 用户每次操作后会要等缓存过期后会重新再取 -->
+                <entry key="authorizationCache" value="1800"/><!-- 用户每次操作后会要等缓存过期后会重新再取 -->
+                <entry key="activeSessionCache" value="1800"/><!-- 用户session每次操作后会重置时间 -->
+            </map>
+        </property>
+    </bean>
     
     <!-- cache注解，项目中如果还存在shiro的ehcache的话，那么本文件和spring-ehcache.xml中的只能使用一个 -->
-<!--     <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true"/> -->
+    <cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true"/>
+
 </beans>
