@@ -13,12 +13,18 @@
 
     <description>Shiro安全配置</description>
     
+    <bean class="com.itzixi.web.utils.ItzixiCaptcha">
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+        <!-- 复用半小时缓存 -->
+        <property name="cacheName" value="itzixiCaptcha"/>
+    </bean>
+    
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     	<property name="realm" ref="shiroDbRealm"/>
     	<!-- 设置缓存管理器为 ehcache -->
-<!--     	<property name="cacheManager" ref="shiroEhcacheManager"></property> -->
-    	<property name="cacheManager" ref="shiroRedisCacheManager"></property>
+    	<property name="cacheManager" ref="shiroEhcacheManager"></property>
+<!--     	<property name="cacheManager" ref="shiroRedisCacheManager"></property> -->
     	<!-- 配置sessionManager，提供session管理 -->
     	<property name="sessionManager" ref="sessionManager"></property>
     	<!-- 配置记住我 -->
@@ -41,7 +47,7 @@
 
     <!-- 项目自定义的Realm -->
     <bean id="shiroDbRealm" class="com.itzixi.web.shiro.ShiroDBRealm">
-    	<constructor-arg index="0" name="cacheManager" ref="shiroRedisCacheManager"/>
+    	<constructor-arg index="0" name="cacheManager" ref="shiroEhcacheManager"/>
     	<!-- 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
         <property name="authenticationCachingEnabled" value="true"/>
         <!-- 缓存AuthenticationInfo信息的缓存名称 -->
@@ -78,6 +84,8 @@
                     authc 需要认证
                     user  验证通过或RememberMe登录的都可以
                 -->
+                
+                /captcha.action = anon
                 
                 /static/** = anon
                 

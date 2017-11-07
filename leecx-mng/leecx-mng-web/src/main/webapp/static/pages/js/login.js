@@ -13,6 +13,9 @@ var Login = function() {
                 },
                 password: {
                     required: true
+                },
+                captcha: {
+                	required: true
                 }
             },
 
@@ -22,6 +25,9 @@ var Login = function() {
                 },
                 password: {
                     required: "密码不能为空."
+                },
+                captcha: {
+                	required: "验证码不能为空."
                 }
             },
 
@@ -80,6 +86,13 @@ var Login = function() {
         $('#register-back-btn').click(function(){
             $('.register-form').hide();
             $('.login-form').show();
+        });
+        
+        // 验证码
+        $("#captcha").click(function() {
+            var $this = $(this);
+            var url = $this.data("src") + new Date().getTime();
+            $this.attr("src", url);
         });
     }
     
