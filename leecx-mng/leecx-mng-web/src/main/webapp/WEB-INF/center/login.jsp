@@ -65,6 +65,21 @@
                     <div id="input-error">
                     	<input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" /> </div>
                     </div>
+                
+                
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">密码</label>
+                    <div id="input-error">
+                    	<input class="form-control form-control-solid placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="验证码" name="captcha" required/>
+                    	<a>
+										<img id="captcha" alt="验证码" src="<%=request.getContextPath() %>/captcha.action" data-src="<%=request.getContextPath() %>/captcha.action?time=" style="width:94.5px;height:35px;"/>
+									</a> 
+                    </div></div>
+                    
+                    
+                    
+                    
+                    
                 <div class="form-actions" style="padding: 0 30px 15px;">
                     <button type="submit" class="btn red btn-block uppercase">登 录</button>
                 </div>
@@ -119,7 +134,7 @@
 	    <jsp:include page="common/commonFooterJS.jsp"></jsp:include>
 	    <!-- 公用尾部JS end -->
     
-        <script src="<%=request.getContextPath() %>/static/pages/js/login.js?v=1.0.4" type="text/javascript"></script>
+        <script src="<%=request.getContextPath() %>/static/pages/js/login.js?v=1.0.5" type="text/javascript"></script>
         
 </body>
 </html>

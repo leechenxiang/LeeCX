@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.DigestUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itzixi.common.utils.CookieUtils;
-import com.itzixi.common.utils.JsonUtils;
 import com.itzixi.common.utils.LeeJSONResult;
 import com.itzixi.common.utils.NumberUtil;
 import com.itzixi.pojo.SysUser;
 import com.itzixi.service.UserService;
 import com.itzixi.web.shiro.ShiroPasswordUtil;
+import com.itzixi.web.utils.ItzixiCaptcha;
 
 /**
  * 
@@ -49,6 +49,9 @@ public class CenterController extends BaseController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ItzixiCaptcha itzixiCaptcha;
 	
 	@RequestMapping("/center")
 	public ModelAndView index() {
@@ -71,13 +74,16 @@ public class CenterController extends BaseController {
 //	@PostMapping("/login")
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public LeeJSONResult doPostlogin(String username, String password, @RequestParam(value="isRememberMe", defaultValue="0") Integer isRememberMe, HttpServletRequest request, HttpServletResponse response) {
+	public LeeJSONResult doPostlogin(String username, String password, String captcha, @RequestParam(value="isRememberMe", defaultValue="0") Integer isRememberMe, HttpServletRequest request, HttpServletResponse response) {
 		
 		if (StringUtils.isBlank(username)) {
             return LeeJSONResult.errorMsg("用户名不能为空");
         }
         if (StringUtils.isBlank(password)) {
             return LeeJSONResult.errorMsg("密码不能为空");
+        }
+        if (!itzixiCaptcha.validate(request, response, captcha)) {
+        	return LeeJSONResult.errorMsg("验证码错误, 请重新输入...");
         }
         Subject user = SecurityUtils.getSubject();
         
@@ -102,6 +108,23 @@ public class CenterController extends BaseController {
 		return LeeJSONResult.ok();
 	}
  
+	/**
+	 * 
+	 * @Title: CenterController.java
+	 * @Package com.itzixi.web.controller
+	 * @Description: 登录的时候生成验证码
+	 * Copyright: Copyright (c) 2017
+	 * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
+	 * 
+	 * @author leechenxiang
+	 * @date 2017年11月7日 下午8:35:00
+	 * @version V1.0
+	 */
+	@GetMapping("captcha")
+    public void captcha(HttpServletRequest request, HttpServletResponse response) {
+        itzixiCaptcha.generate(request, response);
+    }
+	
 	/**
 	 * 
 	 * @Title: CenterController.java
