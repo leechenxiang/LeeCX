@@ -177,6 +177,16 @@ var UserInfoList = function () {
         
         // 不显示水平滚动条
         jqGrid.closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" });
+        
+        // 条件查询所有用户列表
+        $("#searchUserListButton").click(function(){
+        	var searchUserInfoListForm = $("#searchUserInfoListForm");
+//        	console.log(searchUserInfoListForm.serialize());
+        	jqGrid.jqGrid().setGridParam({ 
+        		page: 1,
+                url: hdnContextPath + "/user/getUserInfoList.action?" + searchUserInfoListForm.serialize(),
+            }).trigger("reloadGrid");
+        });
     }
     
     return {

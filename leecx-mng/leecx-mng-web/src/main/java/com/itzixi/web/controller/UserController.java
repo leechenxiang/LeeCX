@@ -134,7 +134,7 @@ public class UserController extends BaseController {
 			page = 1;
 		}
 		
-		JqGridResult result = userService.queryUserList(null, page, pageSize);
+		JqGridResult result = userService.queryUserList(user, page, pageSize);
 		
 		return result;
 	}
