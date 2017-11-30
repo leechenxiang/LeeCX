@@ -51,15 +51,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public JqGridResult queryUserList(String username, Integer page, Integer pageSize) {
+	public JqGridResult queryUserList(SysUser user, Integer page, Integer pageSize) {
 		
 		PageHelper.startPage(page, pageSize);
 		
 		SysUserExample ue = new SysUserExample();
 		Criteria uc = ue.createCriteria();
 		
-		if (StringUtils.isNotEmpty(username)) {
-			uc.andUsernameLike("%" + username + "%");
+		if (StringUtils.isNotEmpty(user.getUsername())) {
+			uc.andUsernameLike("%" + user.getUsername() + "%");
+		}
+		
+		if (StringUtils.isNotEmpty(user.getNickname())) {
+			uc.andNicknameLike("%" + user.getNickname() + "%");
+		}
+		
+		if (user.getSex() != null) {
+			uc.andSexEqualTo(user.getSex());
 		}
 		
 		uc.andIsDeleteEqualTo(YesOrNo.NO.value);

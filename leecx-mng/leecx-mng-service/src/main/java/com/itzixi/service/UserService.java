@@ -39,7 +39,7 @@ public interface UserService {
 	 * @author leechenxiang
 	 * @date 2017年9月5日 上午11:14:46
 	 */
-	public JqGridResult queryUserList(String username, Integer page, Integer pageSize);
+	public JqGridResult queryUserList(SysUser user, Integer page, Integer pageSize);
 	
 	/**
 	 * 

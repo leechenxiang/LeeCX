@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script src="<%=request.getContextPath() %>/static/pages/js/userInfoList.js?v=1.0.2" type="text/javascript"></script>
+<script src="<%=request.getContextPath() %>/static/pages/js/userInfoList.js?v=1.0.3" type="text/javascript"></script>
 
 	<!-- BEGIN PAGE HEADER-->
 	<!-- BEGIN PAGE BAR -->
@@ -24,6 +24,33 @@
         
     <!-- 用户信息列表 jqgrid start -->                
 	<div class="row">
+	
+		<!-- 搜索内容 -->
+		<div class="col-md-12">
+			<br/>
+			
+				<form id="searchUserInfoListForm" action="<%=request.getContextPath() %>/admin/userInfo/queryAllUserList.shtml" class="form-inline" method="post" role="form">
+					<div class="form-group">
+						<label class="sr-only" for="username">用户名:</label>
+						<input id="username" name="username" type="text" class="form-control" placeholder="用户名" />
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="nickname">昵称:</label>
+						<input id="nickname" name="nickname" type="text" class="form-control" placeholder="昵称" />
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="sex">性别:</label>
+					 	<select class="form-control" id="sex" name="sex">
+	                    	<option value="" >选择性别</option>
+	                        <option value="0" >女</option>
+							<option value="1" >男</option>
+	                	</select>
+					</div>
+					<button id="searchUserListButton" class="btn yellow-casablanca" type="button">搜    索</button>
+				</form>
+			</div>
+	
+	
     	<div class="col-md-12">
 			<br/>
 			
