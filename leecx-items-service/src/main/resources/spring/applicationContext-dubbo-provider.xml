@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+       http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://code.alibabatech.com/schema/dubbo  
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 应用信息配置: 提供方应用信息，用于注册中心计算应用间依赖关系 -->
+	<dubbo:application name="leecx-items-service" />
+
+	<!-- 注册中心配置: 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry protocol="zookeeper" address="192.168.1.210:2181" />
+
+	<!-- 服务提供者协议配置: 用dubbo协议在20900端口暴露服务 -->
+	<!-- 发布dubbo需要对外的协议（dubbo）和端口（20880），20880是dubbo默认提供的端口，若一台机器发布多个dubbo服务，则此端口需要显示配置，多个dubbo服务端口需要不一样，否则会端口冲突 -->
+	<dubbo:protocol name="dubbo" port="20880" />
+	
+	<!-- 监控中心配置，protocol="registry"，表示从注册中心发现监控中心地址 -->
+	<!-- <dubbo:monitor protocol="registry"/> -->
+
+	<!-- 服务提供者缺省值配置: 当ProtocolConfig和ServiceConfig某属性没有配置时,采用此缺省值 -->
+	<!-- 
+	timeout:远程服务调用超时时间(毫秒),默认值1000
+	threadpool:线程池类型，可选：fixed/cached,默认fixed
+	threads:服务线程池大小(固定大小),默认100
+	accepts:服务提供者最大可接受连接数,默认0 -->
+	<dubbo:provider timeout="10000" threadpool="fixed" threads="100" accepts="1000" />
+	
+	<!-- 服务提供者暴露服务配置: 声明需要暴露的服务接口 -->
+	<!-- retries:远程服务调用重试次数，不包括第一次调用，不需要重试请设为0 -->
+	<dubbo:service retries="0" interface="com.itzixi.items.service.ItemsService" ref="itemsService" />
+	
+</beans>  
