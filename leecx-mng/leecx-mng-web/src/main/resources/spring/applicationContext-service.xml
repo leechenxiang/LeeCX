@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+		
+	<!-- 扫描包加载Service实现类 -->
+	<context:component-scan base-package="com.itzixi.service,com.itzixi.web.utils,com.itzixi.components.utils"></context:component-scan>
+	
+	<!-- 自动创建代理 对@AspectJ注解的支持 -->
+	<!-- 通知spring使用cglib而不是jdk的来生成代理方法 AOP可以拦截到Service --> 
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	
+	<bean id="sid" class="org.n3r.idworker.Sid"></bean>
+	
+	<!-- jpush client -->
+<!-- 	<bean id="jpushClient" class="cn.jpush.api.JPushClient"> -->
+<!-- 		<constructor-arg name="masterSecret" value="${masterSecret}"></constructor-arg> -->
+<!-- 		<constructor-arg name="appKey" value="${appKey}"></constructor-arg> -->
+<!-- 		<constructor-arg name="maxRetryTimes" value="${maxRetryTimes}"></constructor-arg> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="jpushUtils" class="com.itzixi.common.utils.JPushUtils"></bean> -->
+	
+	<!-- 
+		TODO: 使用密码方式连接，linux上务必配置
+		开发环境使用单机版
+		生产环境务必切换成集群
+	 -->
+	<!-- 配置redis客户端单机版 -->
+<!-- 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool"> -->
+<!-- 		<constructor-arg name="host" value="${redis.single.client.host}"></constructor-arg> -->
+<!-- 		<constructor-arg name="port" value="${redis.single.client.port}"></constructor-arg> -->
+		<!-- 带密码和不带密码的两种方式 -->
+<!-- 		<constructor-arg name="host" value="${redis.uri}"></constructor-arg> -->
+<!-- 	</bean> -->
+	<!-- 配置redis客户端实现类 -->
+<!-- 	<bean id="jedisClientSingle" class="com.itzixi.components.impl.JedisClientSingle"/> -->
+	
+	
+	<!-- druid spring 监控设置 -->
+	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+		<property name="patterns">
+		<list>
+			<value>com.itzixi.service.*</value>
+			<value>com.itzixi.mapper.*</value>
+		</list>
+		</property>
+	</bean>
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+	
+	<!-- 配置redis客户端集群版 单机版和集群版的jedis只能存在一个 -->
+	<!-- <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+		<constructor-arg>
+			<set>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis01.real.cluster.client.host}"/>
+					<constructor-arg name="port" value="${redis01.real.cluster.client.port}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis02.real.cluster.client.host}"/>
+					<constructor-arg name="port" value="${redis02.real.cluster.client.port}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis03.real.cluster.client.host}"/>
+					<constructor-arg name="port" value="${redis03.real.cluster.client.port}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis04.real.cluster.client.host}"/>
+					<constructor-arg name="port" value="${redis04.real.cluster.client.port}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis05.real.cluster.client.host}"/>
+					<constructor-arg name="port" value="${redis05.real.cluster.client.port}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis06.real.cluster.client.host}"/>
+					<constructor-arg name="port" value="${redis06.real.cluster.client.port}"/>
+				</bean>
+			</set>
+		</constructor-arg>
+	</bean>
+	<bean id="jedisClientCluster" class="com.itzixi.rest.component.impl.JedisClientCluster"/> -->
+	
+</beans>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <description>Shiro安全配置</description>
+    
+    <bean class="com.itzixi.web.utils.ItzixiCaptcha">
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+        <!-- 复用半小时缓存 -->
+        <property name="cacheName" value="itzixiCaptcha"/>
+    </bean>
+    
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    	<property name="realm" ref="shiroDbRealm"/>
+    	<!-- 设置缓存管理器为 ehcache -->
+    	<property name="cacheManager" ref="shiroEhcacheManager"></property>
+<!--     	<property name="cacheManager" ref="shiroRedisCacheManager"></property> -->
+    	<!-- 配置sessionManager，提供session管理 -->
+    	<property name="sessionManager" ref="sessionManager"></property>
+    	<!-- 配置记住我 -->
+<!--     	<property name="rememberMeManager" ref="rememberMeManager"></property> -->
+    </bean>
+    
+    <!-- 记住密码Cookie -->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">  
+        <constructor-arg value="rememberMe"/>
+<!-- 7天,采用spring el表达式来计算，方便修改 -->
+        <property name="maxAge" value="#{7 * 24 * 60 * 60}"/>
+<!--     	<property name="domain" value=".yzixi.com"/> -->
+    </bean>
+
+    <!-- rememberMe管理器,cipherKey生成见{@code Base64Test.java} -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cookie" ref="rememberMeCookie"/>  
+    </bean>
+    
+
+    <!-- 项目自定义的Realm -->
+    <bean id="shiroDbRealm" class="com.itzixi.web.shiro.ShiroDBRealm">
+    	<constructor-arg index="0" name="cacheManager" ref="shiroEhcacheManager"/>
+    	<!-- 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
+        <property name="authenticationCachingEnabled" value="true"/>
+        <!-- 缓存AuthenticationInfo信息的缓存名称 -->
+        <property name="authenticationCacheName" value="authenticationCache"/>
+        <!-- 缓存AuthorizationInfo信息的缓存名称 -->
+        <property name="authorizationCacheName" value="authorizationCache"/>
+    </bean>
+
+    <!-- Shiro Filter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 安全管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 默认的登陆访问url -->
+        <property name="loginUrl" value="/login.action"/>
+        <!-- 登陆成功后跳转的url -->
+        <property name="successUrl" value="/index.action"/>
+        <!-- 登录成功以后，没有权限访问的页面，会跳转到该url -->
+        <property name="unauthorizedUrl" value="/unauth.action"/>
+        
+        <!-- 自定义filter配置 -->
+		<property name="filters">
+			<map>
+				<!-- 重写shiro原有的 授权 拦截器 authc -->
+				<entry key="authc">
+					<bean class="com.itzixi.web.shiro.filter.CustomFormAuthenticationFilter"></bean>
+				</entry>
+				<entry key="kickout" value-ref="kickoutSessionControlFilter"/>
+			</map>
+		</property>
+        
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 
+                    anon  不需要认证
+                    authc 需要认证
+                    user  验证通过或RememberMe登录的都可以
+                -->
+                
+                /captcha.action = anon
+                
+                /static/** = anon
+                
+                /login.action = anon
+                /regist.action = anon
+                
+                /** = kickout,authc
+<!--                 kickout,authc -->
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="kickoutSessionControlFilter" class="com.itzixi.web.shiro.filter.KickoutSessionControlFilter">  
+        <property name="cacheManager" ref="shiroEhcacheManager"/>  
+        <property name="sessionManager" ref="sessionManager"/> 
+        <!-- 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户 --> 
+        <property name="kickoutAfter" value="false"/>  
+        <!-- 同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录 -->
+        <property name="maxSession" value="1"/>  
+        <property name="kickoutUrl" value="/login.action"/>  
+    </bean>
+    
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+	<!-- AOP式方法级权限检查  -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    
+    <!-- 用户授权信息Cache, 采用EhCache -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:shiro/ehcache-shiro.xml"/>
+    </bean>
+    
+    <!-- 用户授权信息Cache, 采用spring-cache, 具体请查看spring-ehcache.xml、spring-redis.xml -->
+    <bean id="shiroRedisCacheManager" class="com.itzixi.web.shiro.ShiroSpringCacheManager">
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+    
+    <!-- 会话管理器 start -->
+	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- session的失效时长，单位毫秒 1小时: 3600000, itzixi站点设置以 6小时 为主：21600000 -->
+		<!-- 设置全局会话超时时间，默认30分钟，即如果30分钟内没有访问会话将过期 1800000 -->
+	    <property name="globalSessionTimeout" value="21600000"/>
+	    <!-- 删除失效的session -->
+	    <property name="deleteInvalidSessions" value="true"/>
+	    <!-- 是否开启会话验证器，默认是开启的 -->
+	    <property name="sessionValidationSchedulerEnabled" value="true"/>
+	    <!-- 
+	    	Shiro提供了会话验证调度器，用于定期的验证会话是否已过期，如果过期将停止会话；
+	    	出于性能考虑，一般情况下都是获取会话时来验证会话是否过期并停止会话的；
+	    	但是如在web环境中，如果用户不主动退出是不知道会话是否过期的，因此需要定期的检测会话是否过期，
+	    	Shiro提供了会话验证调度器SessionValidationScheduler来做这件事情。
+	     -->
+	    <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/> 
+	    <!-- Shiro提供SessionDAO用于会话的CRUD -->
+	    <property name="sessionDAO" ref="sessionDAO"/>
+	    <!-- 
+	    	是否启用/禁用Session Id Cookie，默认是启用的；
+	    	如果禁用后将不会设置Session Id Cookie，即默认使用了Servlet容器的JSESSIONID，
+	    	且通过URL重写（URL中的“;JSESSIONID=id”部分）保存Session Id。 
+	    -->
+	    <property name="sessionIdCookieEnabled" value="true"/>
+	    <property name="sessionIdCookie" ref="sessionIdCookie"/>
+	</bean>
+	<!-- 会话验证调度器 -->
+	<bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.ExecutorServiceSessionValidationScheduler">
+		<!-- 设置调度时间间隔，单位毫秒，默认就是1小时,  半小时:1800000 -->
+	    <property name="interval" value="3600000"/>
+	    <!-- 设置会话验证调度器进行会话验证时的会话管理器 -->
+	    <property name="sessionManager" ref="sessionManager"/>
+	</bean>
+
+	<!-- 会话DAO -->
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+		<!-- 设置Session缓存名字，默认就是shiro-activeSessionCache，要和ehcache.xml中的那么对应 -->
+	    <property name="activeSessionsCacheName" value="activeSessionCache"/>
+<!-- 		<property name="cacheManager" ref="shiroSpringCacheManager"/>	     -->
+	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+	</bean>
+	
+	<!-- 会话ID生成器，用于生成会话ID，默认就是JavaUuidSessionIdGenerator，使用java.util.UUID生成-->
+	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
+	
+	 <!-- 会话Cookie模板，sessionManager创建会话Cookie的模板 -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- 设置Cookie名字，默认为JSESSIONID -->
+<!-- 	    <constructor-arg value="bjg_sid"/> -->
+		<!-- 不修改使用默认的话，那么404的时候session就会过期 -->
+	    <property name="name" value="leecx_sid"/>
+	    <!-- 
+	    	如果设置为true，则客户端不会暴露给客户端脚本代码，使用HttpOnly cookie有助于减少某些类型的跨站点脚本攻击；
+	    	此特性需要实现了Servlet 2.5 MR6及以上版本的规范的Servlet容器支持
+	     -->
+	    <property name="httpOnly" value="true"/>
+	    <!-- 设置Cookie的过期时间，秒为单位，默认-1表示关闭浏览器时过期Cookie -->
+	    <property name="maxAge" value="-1"/>
+	    <!-- 设置Cookie的域名，默认空，即当前访问的域名 -->
+	    <!-- TODO 只有几个项目部署在同一个服务器下，使用ehcache，才能运作，不在同一个服务器就要使用redis -->
+<!-- 	    <property name="domain" value=".yzixi.com"/> -->
+	</bean>
+	<!-- 会话管理器 end -->
+    
+</beans>
