@@ -45,8 +45,7 @@ LeeCX
 
 * 注意：sql脚本文件在 leecx-mng-web/src/main/resources/sql/leecx.sql <br />
 
-扫一扫关注我们 加入QQ群（458372464）或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
-![image](https://github.com/leechenxiang/LeeCX/raw/master/leecx-mng/leecx-mng-web/src/main/webapp/static/pages/img/center/qrcode-scan.png)
+扫一扫关注我们 加入QQ群（1313974）或者关注公众号获得更多技术咨询、技术交流、技术资源...<br />
 
 
 视频推荐 我们也致力于技术视频的录制，希望大家学到更多的技术...<br />
